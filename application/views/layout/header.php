@@ -28,6 +28,7 @@
 	<script>
 		var base_url = '<?php echo base_url(); ?>';
 		//cargando url
+		//comentando
 	</script>
 
 </head>
