@@ -1,0 +1,107 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+ 
+class Model_SeguimientoCertificado extends CI_Model 
+{
+ 	public function __construct()
+    {
+        parent::__construct();
+    }
+  //--------------SIAF-----------------------------------------------------------------------------------------------------------------------------
+
+    function listarSeguimientoCertificado($anio)
+	 {
+
+		 $db_prueba = $this->load->database('SIAF', TRUE);
+		 $data =$db_prueba->query("select  distinct act_proy_nombre.ano_eje, act_proy_nombre.act_proy, act_proy_nombre.tipo_act_proy, act_proy_nombre.nombre, act_proy_nombre.estado, 
+									act_proy_nombre.ambito, act_proy_nombre.es_presupuestal, act_proy_nombre.sector_snip, act_proy_nombre.naturaleza_snip, act_proy_nombre.intervencion_snip, 
+									act_proy_nombre.tipo_proyecto, act_proy_nombre.proyecto_snip, act_proy_nombre.ambito_en, act_proy_nombre.es_foniprel, act_proy_nombre.ambito_programa, 
+									act_proy_nombre.es_generico, act_proy_nombre.costo_actual, act_proy_nombre.costo_expediente, act_proy_nombre.costo_viabilidad, 
+									act_proy_nombre.ejecucion_ano_anterior, act_proy_nombre.ind_viabilidad
+									FROM            act_proy_nombre, meta
+									WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (meta.sec_ejec = '000747') AND 
+									(act_proy_nombre.tipo_proyecto = '1')  AND (act_proy_nombre.ano_eje ='".$anio."') "); 
+		 return $data->result();
+	 }
+	 function meta($anio)
+	 {
+	 	 $db_prueba = $this->load->database('SIAF', TRUE);
+		 $data =$db_prueba->query("select  meta.ano_eje, meta.sec_ejec, meta.sec_func, meta.funcion, meta.programa, meta.sub_programa, meta.act_proy, meta.componente, meta.meta, meta.finalidad, 
+                         meta.nombre, meta.monto, meta.cantidad, meta.unidad_med, meta.departamento, meta.provincia, meta.fecha_ing, meta.usuario_ing, meta.fecha_mod, 
+                         meta.usuario_mod, meta.estado, meta.distrito, meta.unidad_medida, meta.cantidad_inicial, meta.unidad_medida_inicial, meta.es_pia, meta.cantidad_semestral, 
+                         meta.cantidad_semestral_inicial, meta.estrategia_nacional, meta.programa_ppto, meta.cantidad_trimestral_01, meta.cantidad_trimestral_01_inicial, 
+                         meta.cantidad_trimestral_03, meta.cantidad_trimestral_03_inicial
+						 FROM            act_proy_nombre, meta
+						 WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (meta.sec_ejec = '000747') AND 
+						 (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='".$anio."')"); 
+		return $data->result();
+	 }
+
+	  function gasto($anio)
+	 {
+	 	 $db_prueba = $this->load->database('SIAF', TRUE);
+		 $data =$db_prueba->query("select gasto.ano_eje, gasto.sec_ejec, gasto.origen, gasto.fuente_financ, gasto.tipo_recurso, gasto.sec_func, gasto.categ_gasto, gasto.grupo_gasto, 
+                         gasto.modalidad_gasto, gasto.elemento_gasto, gasto.presupuesto, gasto.m01, gasto.m02, gasto.m03, gasto.m04, gasto.m05, gasto.m06, gasto.m07, gasto.m08, 
+                         gasto.m09, gasto.m10, gasto.m11, gasto.m12, gasto.modificacion, gasto.ejecucion, gasto.monto_a_solicitado, gasto.monto_de_solicitado, gasto.ampliacion, 
+                         gasto.credito, gasto.id_clasificador, gasto.monto_financ1, gasto.monto_financ2, gasto.compromiso, gasto.devengado, gasto.girado, gasto.pagado, 
+                         gasto.monto_certificado, gasto.monto_comprometido_anual, gasto.monto_precertificado FROM   gasto, meta, act_proy_nombre
+						 WHERE  gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND meta.ano_eje = act_proy_nombre.ano_eje AND 
+						 meta.act_proy = act_proy_nombre.act_proy AND (meta.sec_ejec = '000747') AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='".$anio."')"); 
+		return $data->result();
+	 }
+
+	  //--------------DBSIAF-----------------------------------------------------------------------------------------------------------------------------
+	 function insert_act_proy_nombre($ano_eje,$act_proy,$tipo_act_proy,$nombre,$estado,$ambito,$es_presupuestal,$sector_snip,$naturaleza_snip,$intervencion_snip,$tipo_proyecto,$proyecto_snip,$ambito_en,$es_foniprel,$ambito_programa,$es_generico,$costo_actual,$costo_expediente,$costo_viabilidad,$ejecucion_ano_anterior,$ind_viabilidad)
+	 {
+
+		 $db_prueba = $this->load->database('DBSIAF', TRUE);
+		 $data =$db_prueba->query("insert into act_proy_nombre (ano_eje,act_proy,tipo_act_proy,nombre,estado,ambito,es_presupuestal,sector_snip,naturaleza_snip,intervencion_snip,tipo_proyecto,proyecto_snip,ambito_en,es_foniprel,ambito_programa,es_generico,costo_actual,costo_expediente,costo_viabilidad,ejecucion_ano_anterior,ind_viabilidad)
+		  											     values('$ano_eje','$act_proy','$tipo_act_proy','$nombre','$estado','$ambito','$es_presupuestal','$sector_snip','$naturaleza_snip','$intervencion_snip','$tipo_proyecto','$proyecto_snip','$ambito_en','$es_foniprel','$ambito_programa','$es_generico',$costo_actual,$costo_expediente,$costo_viabilidad,$ejecucion_ano_anterior,'$ind_viabilidad')"); 
+		 return true;
+	 }
+
+
+	  function insert_Meta( $ano_eje, $sec_ejec, $sec_func, $funcion, $programa, $sub_programa, $act_proy, $componente, $meta, $finalidad, $nombre, $monto, $cantidad, $unidad_med, $departamento, 
+					                         	$provincia, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $estado, $distrito, $unidad_medida, $cantidad_inicial, $unidad_medida_inicial, $es_pia, $cantidad_semestral, 
+					                         	$cantidad_semestral_inicial, $estrategia_nacional, $programa_ppto, $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03, 
+					                         	$cantidad_trimestral_03_inicial)
+	 {
+
+		 $db_prueba = $this->load->database('DBSIAF', TRUE);
+		 $data =$db_prueba->query("insert into meta (ano_eje, sec_ejec, sec_func, funcion, programa, sub_programa, act_proy, componente, meta, finalidad, nombre, monto, cantidad, unidad_med, departamento, 
+							                         provincia, fecha_ing, usuario_ing, fecha_mod, usuario_mod, estado, distrito, unidad_medida, cantidad_inicial, unidad_medida_inicial, es_pia, cantidad_semestral, 
+							                         cantidad_semestral_inicial, estrategia_nacional, programa_ppto, cantidad_trimestral_01, cantidad_trimestral_01_inicial, cantidad_trimestral_03, 
+							                         cantidad_trimestral_03_inicial) values ('$ano_eje', '$sec_ejec', '$sec_func', '$funcion', '$programa', '$sub_programa', '$act_proy', '$componente', '$meta', '$finalidad', '$nombre', $monto, $cantidad, '$unidad_med', '$departamento', 
+																                         	'$provincia', '$fecha_ing', '$usuario_ing', '$fecha_mod', '$usuario_mod', '$estado', '$distrito', '$unidad_medida', $cantidad_inicial, '$unidad_medida_inicial', '$es_pia', $cantidad_semestral, 
+																                         	$cantidad_semestral_inicial, '$estrategia_nacional', '$programa_ppto', $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03, 
+																                         	$cantidad_trimestral_03_inicial)"); 
+		 return true;
+	 }
+	
+
+	   function insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto,$grupo_gasto, 
+                         $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, 
+                         $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, 
+                         $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, 
+                         $monto_certificado, $monto_comprometido_anual, $monto_precertificado)
+	 {
+
+		 $db_prueba = $this->load->database('DBSIAF', TRUE);
+		 $data =$db_prueba->query("insert into gasto (ano_eje, sec_ejec, origen, fuente_financ, tipo_recurso, sec_func, categ_gasto, grupo_gasto, modalidad_gasto, elemento_gasto,
+		 											 presupuesto, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, modificacion, ejecucion, monto_a_solicitado, monto_de_solicitado, 
+		 											 ampliacion, credito, id_clasificador, monto_financ1, monto_financ2, compromiso, devengado, girado, pagado, monto_certificado, monto_comprometido_anual, 
+		 											 monto_precertificado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto','$grupo_gasto', 
+									                 '$modalidad_gasto', '$elemento_gasto', $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08,$m09, $m10, $m11, $m12, $modificacion, $ejecucion, 
+									                 $monto_a_solicitado, $monto_de_solicitado, $ampliacion,$credito,'$id_clasificador', $monto_financ1, $monto_financ2, $compromiso, $devengado, 
+									                 $girado, $pagado,$monto_certificado, $monto_comprometido_anual, $monto_precertificado)"); 
+		 return true;
+	 } 
+
+	 function EliminarDataSIAFLocalSeguimientoAnio($anio)//Delet 
+	 {
+	 	$db_prueba = $this->load->database('DBSIAF', TRUE);
+		$data =$db_prueba->query("exec sp_Gestionar_SIAF @opcion='eliminar_proyectos_anio',@anio_meta='".$anio."'"); 
+		return true;
+	 }
+
+
+}
