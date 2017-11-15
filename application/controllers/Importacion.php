@@ -25,8 +25,6 @@ class Importacion extends CI_Controller {
 				//-----------------------SIAF------------------------------------//
 			if(count($this->Model_Consulta->validacionAct_proy($CodigoUnico))>0)
 			{
-
-
 					$DataActividadProyectN=$this->Model_Consulta->ActividadProyectNombrei($CodigoUnico);//ac_proy
 					//$data=$DataActividadProyectN->act_proy;
 					$Dataproyecto_snip_nombre=$this->Model_Consulta->proyecto_snip_nombre($CodigoUnico);//proyecto_snip_nombre
