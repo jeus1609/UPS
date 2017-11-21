@@ -15,9 +15,9 @@ class Model_Consulta extends CI_Model
 
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select ano_eje, act_proy, tipo_act_proy, nombre, estado, ambito, es_presupuestal, sector_snip, naturaleza_snip, intervencion_snip, tipo_proyecto, proyecto_snip,
-									ambito_en, es_foniprel, ambito_programa, es_generico, costo_actual, costo_expediente, costo_viabilidad, ejecucion_ano_anterior, ind_viabilidad
-									FROM   act_proy_nombre
-									WHERE  (val(act_proy) = val('" . $CodigoUnico . "'))");
+                  ambito_en, es_foniprel, ambito_programa, es_generico, costo_actual, costo_expediente, costo_viabilidad, ejecucion_ano_anterior, ind_viabilidad
+                  FROM   act_proy_nombre
+                  WHERE  (val(act_proy) = val('" . $CodigoUnico . "'))");
         return $data->result();
     }
 
@@ -27,7 +27,7 @@ class Model_Consulta extends CI_Model
 
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select ano_eje,act_proy,tipo_act_proy,nombre,estado,ambito,es_presupuestal,sector_snip,naturaleza_snip,intervencion_snip,tipo_proyecto,proyecto_snip,ambito_en,es_foniprel,ambito_programa,es_generico,costo_actual,costo_expediente,costo_viabilidad,ejecucion_ano_anterior,ind_viabilidad FROM act_proy_nombre
-								 where val(act_proy) = val('" . $CodigoUnico . "') ");
+                 where val(act_proy) = val('" . $CodigoUnico . "') ");
         return $data->result();
     }
 
@@ -48,7 +48,7 @@ class Model_Consulta extends CI_Model
                          provincia, fecha_ing, usuario_ing, fecha_mod, usuario_mod, estado, distrito, unidad_medida, cantidad_inicial, unidad_medida_inicial, es_pia, cantidad_semestral,
                          cantidad_semestral_inicial, estrategia_nacional, programa_ppto, cantidad_trimestral_01, cantidad_trimestral_01_inicial, cantidad_trimestral_03,
                          cantidad_trimestral_03_inicial
-						 FROM  meta WHERE  val(act_proy) = val('" . $CodigoUnico . "')");
+             FROM  meta WHERE  val(act_proy) = val('" . $CodigoUnico . "')");
 
         return $data->result();
     }
@@ -62,8 +62,8 @@ class Model_Consulta extends CI_Model
                          gasto.m09, gasto.m10, gasto.m11, gasto.m12, gasto.modificacion, gasto.ejecucion, gasto.monto_a_solicitado, gasto.monto_de_solicitado, gasto.ampliacion,
                          gasto.credito, gasto.id_clasificador, gasto.monto_financ1, gasto.monto_financ2, gasto.compromiso, gasto.devengado, gasto.girado, gasto.pagado,
                          gasto.monto_certificado, gasto.monto_comprometido_anual, gasto.monto_precertificado
-						 FROM    gasto, meta
-						 WHERE   gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND val(meta.act_proy) = val('" . $CodigoUnico . "') AND (val(gasto.sec_ejec) = 747)");
+             FROM    gasto, meta
+             WHERE   gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND val(meta.act_proy) = val('" . $CodigoUnico . "') AND (val(gasto.sec_ejec) = 747)");
 
         return $data->result();
     }
@@ -72,10 +72,10 @@ class Model_Consulta extends CI_Model
     {
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select DISTINCT gasto_acumulado.*
-								FROM    gasto, meta, gasto_acumulado
-								WHERE  gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND gasto.ano_eje = gasto_acumulado.ano_eje AND
-	                         gasto.sec_ejec = gasto_acumulado.sec_ejec AND gasto.origen = gasto_acumulado.origen AND gasto.fuente_financ = gasto_acumulado.fuente_financ AND
-	                         gasto.tipo_recurso = gasto_acumulado.tipo_recurso AND gasto.sec_func = gasto_acumulado.sec_func AND val(meta.act_proy) = val('" . $CodigoUnico . "')  AND val(gasto.sec_ejec) = 747");
+                FROM    gasto, meta, gasto_acumulado
+                WHERE  gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND gasto.ano_eje = gasto_acumulado.ano_eje AND
+                           gasto.sec_ejec = gasto_acumulado.sec_ejec AND gasto.origen = gasto_acumulado.origen AND gasto.fuente_financ = gasto_acumulado.fuente_financ AND
+                           gasto.tipo_recurso = gasto_acumulado.tipo_recurso AND gasto.sec_func = gasto_acumulado.sec_func AND val(meta.act_proy) = val('" . $CodigoUnico . "')  AND val(gasto.sec_ejec) = 747");
 
         return $data->result();
     }
@@ -83,10 +83,10 @@ class Model_Consulta extends CI_Model
     public function ejecucion_mpp($CodigoUnico)
     {
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("SELECT        meta.ano_eje, meta.sec_ejec, meta.sec_func, meta.act_proy, ejecucion_mpp.devengado, ejecucion_mpp.certificado, ejecucion_mpp.mes_eje
-									FROM            ejecucion_mpp, meta
-									WHERE        ejecucion_mpp.ano_eje = meta.ano_eje AND ejecucion_mpp.sec_ejec = meta.sec_ejec AND ejecucion_mpp.sec_func = meta.sec_func AND
-								  (meta.act_proy = '" . $CodigoUnico . "') AND val(meta.sec_ejec) = 747");
+        $data      = $db_prueba->query("SELECT DISTINCT ejecucion_mpp.*
+                  FROM            ejecucion_mpp, meta
+                  WHERE        ejecucion_mpp.ano_eje = meta.ano_eje AND ejecucion_mpp.sec_ejec = meta.sec_ejec AND ejecucion_mpp.sec_func = meta.sec_func AND
+                  (meta.act_proy = '" . $CodigoUnico . "') AND val(meta.sec_ejec) = 747");
         return $data->result();
     }
 
@@ -123,7 +123,7 @@ class Model_Consulta extends CI_Model
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("insert into act_proy_nombre (ano_eje,act_proy,tipo_act_proy,nombre,estado,ambito,es_presupuestal,sector_snip,naturaleza_snip,intervencion_snip,tipo_proyecto,proyecto_snip,ambito_en,es_foniprel,ambito_programa,es_generico,costo_actual,costo_expediente,costo_viabilidad,ejecucion_ano_anterior,ind_viabilidad)
-		  											     values('$ano_eje','$act_proy','$tipo_act_proy','$nombre','$estado','$ambito','$es_presupuestal','$sector_snip','$naturaleza_snip','$intervencion_snip','$tipo_proyecto','$proyecto_snip','$ambito_en','$es_foniprel','$ambito_programa','$es_generico',$costo_actual,$costo_expediente,$costo_viabilidad,$ejecucion_ano_anterior,'$ind_viabilidad')");
+                                 values('$ano_eje','$act_proy','$tipo_act_proy','$nombre','$estado','$ambito','$es_presupuestal','$sector_snip','$naturaleza_snip','$intervencion_snip','$tipo_proyecto','$proyecto_snip','$ambito_en','$es_foniprel','$ambito_programa','$es_generico',$costo_actual,$costo_expediente,$costo_viabilidad,$ejecucion_ano_anterior,'$ind_viabilidad')");
         return true;
     }
 
@@ -135,12 +135,12 @@ class Model_Consulta extends CI_Model
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("insert into meta (ano_eje, sec_ejec, sec_func, funcion, programa, sub_programa, act_proy, componente, meta, finalidad, nombre, monto, cantidad, unidad_med, departamento,
-							                         provincia, fecha_ing, usuario_ing, fecha_mod, usuario_mod, estado, distrito, unidad_medida, cantidad_inicial, unidad_medida_inicial, es_pia, cantidad_semestral,
-							                         cantidad_semestral_inicial, estrategia_nacional, programa_ppto, cantidad_trimestral_01, cantidad_trimestral_01_inicial, cantidad_trimestral_03,
-							                         cantidad_trimestral_03_inicial) values ('$ano_eje', '$sec_ejec', '$sec_func', '$funcion', '$programa', '$sub_programa', '$act_proy', '$componente', '$meta', '$finalidad', '$nombre', $monto, $cantidad, '$unidad_med', '$departamento',
-																                         	'$provincia', '$fecha_ing', '$usuario_ing', '$fecha_mod', '$usuario_mod', '$estado', '$distrito', '$unidad_medida', $cantidad_inicial, '$unidad_medida_inicial', '$es_pia', $cantidad_semestral,
-																                         	$cantidad_semestral_inicial, '$estrategia_nacional', '$programa_ppto', $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03,
-																                         	$cantidad_trimestral_03_inicial)");
+                                       provincia, fecha_ing, usuario_ing, fecha_mod, usuario_mod, estado, distrito, unidad_medida, cantidad_inicial, unidad_medida_inicial, es_pia, cantidad_semestral,
+                                       cantidad_semestral_inicial, estrategia_nacional, programa_ppto, cantidad_trimestral_01, cantidad_trimestral_01_inicial, cantidad_trimestral_03,
+                                       cantidad_trimestral_03_inicial) values ('$ano_eje', '$sec_ejec', '$sec_func', '$funcion', '$programa', '$sub_programa', '$act_proy', '$componente', '$meta', '$finalidad', '$nombre', $monto, $cantidad, '$unidad_med', '$departamento',
+                                                          '$provincia', '$fecha_ing', '$usuario_ing', '$fecha_mod', '$usuario_mod', '$estado', '$distrito', '$unidad_medida', $cantidad_inicial, '$unidad_medida_inicial', '$es_pia', $cantidad_semestral,
+                                                          $cantidad_semestral_inicial, '$estrategia_nacional', '$programa_ppto', $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03,
+                                                          $cantidad_trimestral_03_inicial)");
         return true;
     }
     public function insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto,
@@ -151,12 +151,12 @@ class Model_Consulta extends CI_Model
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("insert into gasto (ano_eje, sec_ejec, origen, fuente_financ, tipo_recurso, sec_func, categ_gasto, grupo_gasto, modalidad_gasto, elemento_gasto,
-		 											 presupuesto, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, modificacion, ejecucion, monto_a_solicitado, monto_de_solicitado,
-		 											 ampliacion, credito, id_clasificador, monto_financ1, monto_financ2, compromiso, devengado, girado, pagado, monto_certificado, monto_comprometido_anual,
-		 											 monto_precertificado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto','$grupo_gasto',
-									                 '$modalidad_gasto', '$elemento_gasto', $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08,$m09, $m10, $m11, $m12, $modificacion, $ejecucion,
-									                 $monto_a_solicitado, $monto_de_solicitado, $ampliacion,$credito,'$id_clasificador', $monto_financ1, $monto_financ2, $compromiso, $devengado,
-									                 $girado, $pagado,$monto_certificado, $monto_comprometido_anual, $monto_precertificado)");
+                           presupuesto, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, modificacion, ejecucion, monto_a_solicitado, monto_de_solicitado,
+                           ampliacion, credito, id_clasificador, monto_financ1, monto_financ2, compromiso, devengado, girado, pagado, monto_certificado, monto_comprometido_anual,
+                           monto_precertificado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto','$grupo_gasto',
+                                   '$modalidad_gasto', '$elemento_gasto', $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08,$m09, $m10, $m11, $m12, $modificacion, $ejecucion,
+                                   $monto_a_solicitado, $monto_de_solicitado, $ampliacion,$credito,'$id_clasificador', $monto_financ1, $monto_financ2, $compromiso, $devengado,
+                                   $girado, $pagado,$monto_certificado, $monto_comprometido_anual, $monto_precertificado)");
         return true;
     }
 
@@ -169,15 +169,15 @@ class Model_Consulta extends CI_Model
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT into gasto_acumulado (ano_eje, sec_ejec, origen, fuente_financ, tipo_recurso,sec_func, categ_gasto, grupo_gasto,
-	 											  modalidad_gasto, elemento_gasto, mes, trimestre, programacion, calendario, ejecucion,
-						                          monto_a_aprobado, monto_a_solicitado, monto_a_interno, monto_de_aprobado,
-						                          monto_de_solicitado, monto_de_interno, archivo, calendario_ampliacion,
-						                          calendario_actualizacion, calendario_ampliacion_dst, calendario_flexible, id_clasificador,
-						                          pptm, compromiso, devengado, girado, pagado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso','$sec_func', '$categ_gasto', '$grupo_gasto',
-	 											  '$modalidad_gasto', '$elemento_gasto', '$mes', '$trimestre', $programacion, $calendario, $ejecucion,
-						                          $monto_a_aprobado, $monto_a_solicitado, $monto_a_interno, $monto_de_aprobado,
-						                          $monto_de_solicitado, $monto_de_interno, '$archivo', $calendario_ampliacion,
-						                          $calendario_actualizacion, $calendario_ampliacion_dst, $calendario_flexible, '$id_clasificador',$pptm, $compromiso, $devengado, $girado, $pagado) ");
+                          modalidad_gasto, elemento_gasto, mes, trimestre, programacion, calendario, ejecucion,
+                                      monto_a_aprobado, monto_a_solicitado, monto_a_interno, monto_de_aprobado,
+                                      monto_de_solicitado, monto_de_interno, archivo, calendario_ampliacion,
+                                      calendario_actualizacion, calendario_ampliacion_dst, calendario_flexible, id_clasificador,
+                                      pptm, compromiso, devengado, girado, pagado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso','$sec_func', '$categ_gasto', '$grupo_gasto',
+                          '$modalidad_gasto', '$elemento_gasto', '$mes', '$trimestre', $programacion, $calendario, $ejecucion,
+                                      $monto_a_aprobado, $monto_a_solicitado, $monto_a_interno, $monto_de_aprobado,
+                                      $monto_de_solicitado, $monto_de_interno, '$archivo', $calendario_ampliacion,
+                                      $calendario_actualizacion, $calendario_ampliacion_dst, $calendario_flexible, '$id_clasificador',$pptm, $compromiso, $devengado, $girado, $pagado) ");
         return true;
     }
 
