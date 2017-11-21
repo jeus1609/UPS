@@ -32,11 +32,11 @@ class Model_Consulta extends CI_Model
     }
 
     public function proyecto_snip_nombre($CodigoUnico) //proyecto_snip_nombre
-
     {
-
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select proyecto_snip,nombre,codigo_literal,tipo_proyecto FROM   proyecto_snip_nombre WHERE   val(act_proy) = val('" . $CodigoUnico . "') ");
+        $data      = $db_prueba->query("SELECT DISTINCT proyecto_snip_nombre.proyecto_snip, proyecto_snip_nombre.nombre, proyecto_snip_nombre.codigo_literal, proyecto_snip_nombre.tipo_proyecto
+          FROM            proyecto_snip_nombre, act_proy_nombre
+          WHERE        val(proyecto_snip_nombre.proyecto_snip) = val(act_proy_nombre.proyecto_snip) AND (act_proy_nombre.act_proy = '".$CodigoUnico."')");
         return $data->result();
     }
 
@@ -83,7 +83,7 @@ class Model_Consulta extends CI_Model
     public function ejecucion_mpp($CodigoUnico)
     {
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("SELECT DISTINCT ejecucion_mpp.*
+        $data      = $db_prueba->query("select DISTINCT ejecucion_mpp.*
                   FROM            ejecucion_mpp, meta
                   WHERE        ejecucion_mpp.ano_eje = meta.ano_eje AND ejecucion_mpp.sec_ejec = meta.sec_ejec AND ejecucion_mpp.sec_func = meta.sec_func AND
                   (meta.act_proy = '" . $CodigoUnico . "') AND val(meta.sec_ejec) = 747");
@@ -205,7 +205,7 @@ class Model_Consulta extends CI_Model
         , $certificado) {
 
         $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[ejecucion_mpp]
+        $data      = $db_prueba->query("INSERT INTO ejecucion_mpp
            ([ano_eje]
            ,[sec_ejec]
            ,[mes_eje]
@@ -229,28 +229,28 @@ class Model_Consulta extends CI_Model
            ,[comprometido_anual]
            ,[certificado])
      VALUES
-           ($ano_eje
-           ,$sec_ejec
-           ,$mes_eje
-           ,$ciclo
-           ,$origen
-           ,$fuente_financ
-           ,$tipo_recurso
-           ,$clasificador
-           ,$sec_func
-           ,$ejecucion
-           ,$anulacion
-           ,$estado
-           ,$estado_envio
-           ,$cod_error
-           ,$cod_mensa
-           ,$id_clasificador
-           ,$compromiso
-           ,$devengado
-           ,$girado
-           ,$pagado
-           ,$comprometido_anual
-           ,$certificado )");
+           ('$ano_eje'
+           ,'$sec_ejec'
+           ,'$mes_eje'
+           ,'$ciclo'
+           ,'$origen'
+           ,'$fuente_financ'
+           ,'$tipo_recurso'
+           ,'$clasificador'
+           ,'$sec_func'
+           ,'$ejecucion'
+           ,'$anulacion'
+           ,'$estado'
+           ,'$estado_envio'
+           ,'$cod_error'
+           ,'$cod_mensa'
+           ,'$id_clasificador'
+           ,'$compromiso'
+           ,'$devengado'
+           ,'$girado'
+           ,'$pagado'
+           ,'$comprometido_anual'
+           ,'$certificado' )");
         return true;
     }
 

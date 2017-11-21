@@ -38,7 +38,8 @@ class Importacion extends CI_Controller
 
                 try {
                     $this->db->trans_start();
-                    foreach ($proyecto_snip_nombre_DATA as $itemp) {
+
+                    foreach ($proyecto_snip_nombre_DATA as $itemp) {                    	
                         $proyecto_snip  = $itemp->proyecto_snip;
                         $nombre         = $itemp->nombre;
                         $codigo_literal = $itemp->codigo_literal;
@@ -266,12 +267,11 @@ class Importacion extends CI_Controller
 
             } else {
 
-                echo json_encode(['proceso' => 'error', 'mensaje' => 'No existe Código o No Ingreso un número']);exit;
+                echo json_encode(['proceso' => 'error', 'mensaje' => 'Codigo Unico No existe']);exit;
             }
         } else {
-            echo json_encode(['proceso' => 'error', 'mensaje' => 'Ingreso un número']);exit;
+            echo json_encode(['proceso' => 'error', 'mensaje' => 'Ingrese un numero valido']);exit;
 
         }
     }
-
 }

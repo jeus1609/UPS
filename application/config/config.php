@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://200.37.200.182:8080/importador_siaf/';
+$config['base_url'] = 'http://localhost:8080/importador_siaf/';
 
 /*
 |--------------------------------------------------------------------------

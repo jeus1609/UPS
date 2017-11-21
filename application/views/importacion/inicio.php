@@ -3,10 +3,10 @@
 		 <div class="row" style="margin-left: 10px; margin:10px; ">
 			 <div class="panel panel-default">
 					  <div class="col-lg-12" style="margin-left: 250px;">
-				    	  <input type="hidden" id="proyectoSnip" name="proyectoSnip" value="<?php echo $CodigoUnico;?>" class="form-control" placeholder="Ingrese código Unico"  >
+				    	  <input type="hidden" id="proyectoSnip" name="proyectoSnip" value="<?php echo $CodigoUnico; ?>" class="form-control" placeholder="Ingrese código Unico"  >
 				       </div>
 			 </div>
-		</div>							
+		</div>
 </div>
 <script>
 $(document).ready(function() {
@@ -15,10 +15,7 @@ $(document).ready(function() {
  function importar()
  		{
 	 		var CodigoUnico=document.getElementById("proyectoSnip").value;
-			/*if(!confirm(' Actualizar . ¿Realmente desea proseguir con la operaición?'))
-			{
-				return;
-			}*/
+			/*if(!confirm(' Actualizar . ¿Realmente desea proseguir con la operaición?')){return;}*/
 
 			paginaAjaxJSON({ "CodigoUnico" : CodigoUnico }, base_url+'index.php/Importacion/importar', 'POST', null, function(objectJSON)
 			{
@@ -28,10 +25,10 @@ $(document).ready(function() {
 				{
 					title: '',
 					text: objectJSON.mensaje,
-					type: (objectJSON.proceso=='Correcto' ? 'success' : 'error') 
+					type: (objectJSON.proceso=='Correcto' ? 'success' : 'error')
 				},
 				function(){
-					window.close(); 
+					window.close();
 				});
 
 

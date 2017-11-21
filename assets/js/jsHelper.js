@@ -28,7 +28,7 @@ function paginaAjaxJSON(data, url, method, preFunction, postFunction, cache, asy
         data : data,
         cache : cache,
         async : async
-    }).done(function(pagina) 
+    }).done(function(pagina)
     {
         $('#divModalCargaAjax').hide();
         
@@ -40,7 +40,7 @@ function paginaAjaxJSON(data, url, method, preFunction, postFunction, cache, asy
     {
         $('#divModalCargaAjax').hide();
         
-        alert('Error en la red (Transferencia de datos). Por favor reporte ésto al administrador del sistema. Pedimos disculpas y damos gracias por su comprensión.');
+        alert('Error en la red (Transferencia de datos). Por favor reporte ésto al administrador del sistema. Pedimos disculpas y damos gracias por su comprensión. paginaAjaxJSON');
     });
 }
 
@@ -72,7 +72,7 @@ function paginaAjax(idSeccion, data, url, method, preFunction, postFunction, cac
     }).fail(function()
     {
         $('#divModalCargaAjax').hide();
-        $('#'+idSeccion).html('<div class="alert alert-danger">Error en la red (Transferencia de datos). Por favor reporte ésto al administrador del sistema. Pedimos disculpas y damos gracias por su comprensión.</div>');
+        $('#'+idSeccion).html('<div class="alert alert-danger">No se Pudo establecer conexion con el servidor SIAF, consulte con el administrador.</div>');
     });
 }
 
@@ -136,7 +136,7 @@ function paginaAjaxDialogo(idModal, titulo, data, url, method, preFunction, post
     {
         $('#divModalCargaAjax').hide();
 
-        $('body').append(htmlTempInicio+'<div class="alert alert-danger">Error en la red (Transferencia de datos). Por favor reporte ésto al administrador del sistema. Pedimos disculpas y damos gracias por su comprensión.</div>'+htmlTempFin);
+        $('body').append(htmlTempInicio+'<div class="alert alert-danger">Error en la red (Transferencia de datos). Por favor reporte ésto al administrador del sistema. Pedimos disculpas y damos gracias por su comprensión.paginaAjaxDialogo</div>'+htmlTempFin);
 
         $('#'+idModalTemp).modal('show');
     });
