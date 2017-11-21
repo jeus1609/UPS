@@ -231,7 +231,7 @@ class Importacion extends CI_Controller
                         $comprometido_anual = $itemp->comprometido_anual;
                         $certificado        = $itemp->certificado;
 
-                        $this->Model_Consulta->insert_Gasto_acumulado(
+                        $this->Model_Consulta->insert_ejecucion_mpp(
                             $ano_eje
                             , $sec_ejec
                             , $mes_eje
