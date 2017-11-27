@@ -123,11 +123,11 @@ $db['SIAF'] = array(
 $active_group = 'DBSIAF';	
 
 $db['DBSIAF'] = array(
-	'dsn'	=> 'DBSIAF',
-	'hostname' => '',
+	'dsn'	=> '',
+	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=192.168.1.100;Database=DBSIAF",
 	'username' => 'smp',
 	'password' => 'Semo123',
-	'database' => 'DBSIAF',
+	'database' => '',
 	'dbdriver' => 'odbc',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
