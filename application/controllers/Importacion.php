@@ -1,4 +1,9 @@
 <?php
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Content-Type, *");
+        
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Importacion extends CI_Controller
@@ -14,6 +19,10 @@ class Importacion extends CI_Controller
     {
         set_time_limit(0);
         ini_set('memory_limit', '-1');
+
+        $data['mensaje'] = '';
+        $data['actualizo'] = false
+
         //$CodigoUnico = $this->input->POST('CodigoUnico');
         if (is_numeric($CodigoUnico)) {
 
@@ -277,7 +286,7 @@ class Importacion extends CI_Controller
         // $this->output->set_output($data);
         // exit;
         //$this->load->view('layout/header');
-        echo json_encode($data);
+        echo json_encode($data, JSON_FORCE_OBJECT);
         // $this->load->view('importacion/inicio', $data);
         //$this->load->view('layout/footer');
     }
