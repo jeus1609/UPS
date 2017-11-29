@@ -3,12 +3,13 @@
 		 <div class="row" style="margin-left: 10px; margin:10px; ">
 			 <div class="panel panel-default">
 					  <div class="col-lg-12" style="margin-left: 250px;">
-				    	  <input type="hidden" id="proyectoSnip" name="proyectoSnip" value="<?php echo $CodigoUnico; ?>" class="form-control" placeholder="Ingrese código Unico"  >
+						        <h3><?php echo $mensaje; ?></h3>
+				    	<!--   <input type="hidden" id="proyectoSnip" name="proyectoSnip" value="<?php echo $CodigoUnico; ?>" class="form-control" placeholder="Ingrese código Unico"  > -->
 				       </div>
 			 </div>
 		</div>
 </div>
-<script>
+<!-- <script>
 $(document).ready(function() {
  		importar();//importacion carpeta
 });
@@ -36,5 +37,5 @@ $(document).ready(function() {
 
  		}
 
-</script>
+</script> -->
 
