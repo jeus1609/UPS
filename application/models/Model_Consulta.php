@@ -90,6 +90,38 @@ class Model_Consulta extends CI_Model
         return $data->result();
     }
 
+    public function expediente($ano_eje, $expediente, $sec_ejec)
+    {
+        $db_prueba = $this->load->database('SIAF', true);
+        $data      = $db_prueba->query("select * 
+                  from expediente where expediente like '%".$expediente."' and ano_eje = '".$ano_eje."' and sec_ejec LIKE '".$sec_ejec."'");
+        return $data->result();
+    }
+
+    public function expediente_nota($ano_eje, $expediente, $sec_ejec)
+    {
+        $db_prueba = $this->load->database('SIAF', true);
+        $data      = $db_prueba->query("select * 
+                  from expediente_nota where expediente like '%".$expediente."' and ano_eje = '".$ano_eje."' and sec_ejec LIKE '".$sec_ejec."'");
+        return $data->result();
+    }
+
+    public function expediente_fase($ano_eje, $expediente, $sec_ejec)
+    {
+        $db_prueba = $this->load->database('SIAF', true);
+        $data      = $db_prueba->query("select * 
+                  from expediente_fase where expediente like '%".$expediente."' and ano_eje = '".$ano_eje."' and sec_ejec LIKE '".$sec_ejec."'");
+        return $data->result();
+    }
+
+    public function expediente_secuencia($ano_eje, $expediente, $sec_ejec)
+    {
+        $db_prueba = $this->load->database('SIAF', true);
+        $data      = $db_prueba->query("select * 
+                  from expediente_secuencia where expediente like '%".$expediente."' and ano_eje = '".$ano_eje."' and sec_ejec LIKE '".$sec_ejec."'");
+        return $data->result();
+    }
+
     public function importar($CodigoUnico)
     {
 
@@ -98,7 +130,7 @@ class Model_Consulta extends CI_Model
         return $data->result();
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------//
+    //--------------------------------------------------------------------------------------------------------//
 
     public function EliminarDataSIAFLocal($CodigoUnico)
     {
