@@ -10,7 +10,6 @@ class Model_Consulta extends CI_Model
     }
 
     public function validacionAct_proy($CodigoUnico) //act_proy
-
     {
 
         $db_prueba = $this->load->database('SIAF', true);
@@ -22,7 +21,6 @@ class Model_Consulta extends CI_Model
     }
 
     public function ActividadProyectNombrei($CodigoUnico) //act_proy
-
     {
 
         $db_prueba = $this->load->database('SIAF', true);
@@ -41,7 +39,6 @@ class Model_Consulta extends CI_Model
     }
 
     public function meta($CodigoUnico) //meta
-
     {
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select ano_eje, sec_ejec, sec_func, funcion, programa, sub_programa, act_proy, componente, meta, finalidad, nombre, monto, cantidad, unidad_med, departamento,
@@ -54,7 +51,6 @@ class Model_Consulta extends CI_Model
     }
 
     public function gastos($CodigoUnico) //proyecto_snip_nombre
-
     {
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select gasto.ano_eje, gasto.sec_ejec, gasto.origen, gasto.fuente_financ, gasto.tipo_recurso, gasto.sec_func, gasto.categ_gasto, gasto.grupo_gasto,
