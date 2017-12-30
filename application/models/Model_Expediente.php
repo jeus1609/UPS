@@ -67,8 +67,8 @@ class Model_Expediente extends CI_Model
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[expediente]
            ([ano_eje], [sec_ejec], [expediente], [mes_eje], [cod_doc], [num_doc], [fecha_doc], [fecha_ing], [usuario_ing], [fecha_mod], [usuario_mod], [tipo_operacion], [sec_ejec2], [modalidad_compra], [clase_menor_cuantia], [sec_area], [flag_encargo], [expediente_encargante], [cod_mensa], [estado], [estado_envio], [archivo], [tipo_proceso], [id_proceso], [id_contrato], [sec_ejec_contrato], [fase_contractual], [procedencia], [expediente_financiamiento])
-     VALUES
-           ($ano_eje, $sec_ejec, $expediente, $mes_eje, $cod_doc, $num_doc, $fecha_doc, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $tipo_operacion, $sec_ejec2, $modalidad_compra, $clase_menor_cuantia, $sec_area, $flag_encargo, $expediente_encargante, $cod_mensa, $estado, $estado_envio, $archivo, $tipo_proceso, $id_proceso, $id_contrato, $sec_ejec_contrato, $fase_contractual, $procedencia, $expediente_financiamiento)");
+        VALUES(
+                '$ano_eje','$sec_ejec','$expediente','$mes_eje','$cod_doc','$num_doc','$fecha_doc','$fecha_ing','$usuario_ing','$fecha_mod','$usuario_mod','$tipo_operacion','$sec_ejec2','$modalidad_compra','$clase_menor_cuantia','$sec_area','$flag_encargo','$expediente_encargante','$cod_mensa','$estado','$estado_envio','$archivo','$tipo_proceso','$id_proceso','$id_contrato','$sec_ejec_contrato','$fase_contractual','$procedencia','$expediente_financiamiento')");
         //return $data->result();
         return true;
     }
@@ -86,8 +86,8 @@ class Model_Expediente extends CI_Model
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[expediente_nota]
            ([ano_eje], [sec_ejec], [expediente], [ciclo], [fase], [secuencia], [secuencia_nota], [notas], [estado], [estado_envio], [archivo])
-     VALUES
-           ($ano_eje, $sec_ejec, $expediente, $ciclo, $fase, $secuencia, $secuencia_nota, $notas, $estado, $estado_envio, $archivo)");
+         VALUES
+               ('$ano_eje', '$sec_ejec', '$expediente', '$ciclo', '$fase', '$secuencia', '$secuencia_nota', '$notas', '$estado', '$estado_envio', '$archivo' )");
         //return $data->result();
         return true;
     }
@@ -105,8 +105,8 @@ class Model_Expediente extends CI_Model
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[expediente_fase]
            ([ano_eje], [sec_ejec], [expediente], [ciclo], [fase], [secuencia], [secuencia_padre], [secuencia_anterior], [mes_ctb], [monto_nacional], [monto_saldo], [origen], [fuente_financ], [mejor_fecha], [tipo_id], [ruc], [tipo_pago], [tipo_recurso], [tipo_compromiso], [organismo], [proyecto], [estado], [estado_envio], [archivo], [tipo_giro], [tipo_financiamiento], [cod_doc_ref], [fecha_doc_ref], [num_doc_ref], [certificado], [certificado_secuencia], [sec_ejec_ruc], [sec_ejec_reciproca], [transferencia_financiera_id])
-     VALUES
-           ($ano_eje, $sec_ejec, $expediente, $ciclo, $fase, $secuencia, $secuencia_padre, $secuencia_anterior, $mes_ctb, $monto_nacional, $monto_saldo, $origen, $fuente_financ, $mejor_fecha, $tipo_id, $ruc, $tipo_pago, $tipo_recurso, $tipo_compromiso, $organismo, $proyecto, $estado, $estado_envio, $archivo, $tipo_giro, $tipo_financiamiento, $cod_doc_ref, $fecha_doc_ref, $num_doc_ref, $certificado, $certificado_secuencia, $sec_ejec_ruc, $sec_ejec_reciproca, $transferencia_financiera_id )");
+        VALUES
+           ( '$ano_eje', '$sec_ejec', '$expediente', '$ciclo', '$fase', '$secuencia', '$secuencia_padre', '$secuencia_anterior', '$mes_ctb', '$monto_nacional', '$monto_saldo', '$origen', '$fuente_financ', '$mejor_fecha', '$tipo_id', '$ruc', '$tipo_pago', '$tipo_recurso', '$tipo_compromiso', '$organismo', '$proyecto', '$estado', '$estado_envio', '$archivo', '$tipo_giro', '$tipo_financiamiento', '$cod_doc_ref', '$fecha_doc_ref', '$num_doc_ref', '$certificado', '$certificado_secuencia', '$sec_ejec_ruc', '$sec_ejec_reciproca', '$transferencia_financiera_id')");
         //return $data->result();
         return true;
     }
@@ -125,7 +125,7 @@ class Model_Expediente extends CI_Model
         $data      = $db_prueba->query("INSERT INTO [dbo].[expediente_secuencia]
            ([ano_eje], [sec_ejec], [expediente], [ciclo], [fase], [secuencia], [correlativo], [cod_doc], [num_doc], [fecha_doc], [moneda], [tipo_cambio], [monto], [monto_saldo], [monto_nacional], [monto_extranjero], [fecha_ing], [usuario_ing], [fecha_mod], [usuario_mod], [num_record], [serie_doc], [ano_proceso], [mes_proceso], [dia_proceso], [grupo], [edicion], [ano_cta_cte], [banco], [cta_cte], [fecha_autorizacion], [cod_mensa], [estado_ctb], [estado_ctb_anterior], [estado], [estado_anterior], [estado_envio], [archivo], [reg_multiple], [cta_bco_ejec], [flg_interfase], [ind_contabiliza], [tipo_cambio_ps], [sec_proceso], [cod_doc_b], [fecha_doc_b], [num_doc_b], [fecha_bd_oracle], [mes_afectacion_calendario], [secuencia_solicitud], [fecha_creacion_clt], [fecha_modificacion_clt], [usuario_creacion_clt], [usuario_modificacion_clt], [fecha_autorizacion_giro], [verifica_1], [secuencia_transferencia], [transferencia])
      VALUES
-           ($ano_eje, $sec_ejec, $expediente, $ciclo, $fase, $secuencia, $correlativo, $cod_doc, $num_doc, $fecha_doc, $moneda, $tipo_cambio, $monto, $monto_saldo, $monto_nacional, $monto_extranjero, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $num_record, $serie_doc, $ano_proceso, $mes_proceso, $dia_proceso, $grupo, $edicion, $ano_cta_cte, $banco, $cta_cte, $fecha_autorizacion, $cod_mensa, $estado_ctb, $estado_ctb_anterior, $estado, $estado_anterior, $estado_envio, $archivo, $reg_multiple, $cta_bco_ejec, $flg_interfase, $ind_contabiliza, $tipo_cambio_ps, $sec_proceso, $cod_doc_b, $fecha_doc_b, $num_doc_b, $fecha_bd_oracle, $mes_afectacion_calendario, $secuencia_solicitud, $fecha_creacion_clt, $fecha_modificacion_clt, $usuario_creacion_clt, $usuario_modificacion_clt, $fecha_autorizacion_giro, $verifica_1, $secuencia_transferencia, $transferencia)");
+           (   '$ano_eje', '$sec_ejec', '$expediente', '$ciclo', '$fase', '$secuencia', '$correlativo', '$cod_doc', '$num_doc', '$fecha_doc', '$moneda', '$tipo_cambio', '$monto', '$monto_saldo', '$monto_nacional', '$monto_extranjero', '$fecha_ing', '$usuario_ing', '$fecha_mod', '$usuario_mod', '$num_record', '$serie_doc', '$ano_proceso', '$mes_proceso', '$dia_proceso', '$grupo', '$edicion', '$ano_cta_cte', '$banco', '$cta_cte', '$fecha_autorizacion', '$cod_mensa', '$estado_ctb', '$estado_ctb_anterior', '$estado', '$estado_anterior', '$estado_envio', '$archivo', '$reg_multiple', '$cta_bco_ejec', '$flg_interfase', '$ind_contabiliza', '$tipo_cambio_ps', '$sec_proceso', '$cod_doc_b', '$fecha_doc_b', '$num_doc_b', '$fecha_bd_oracle', '$mes_afectacion_calendario', '$secuencia_solicitud', '$fecha_creacion_clt', '$fecha_modificacion_clt', '$usuario_creacion_clt', '$usuario_modificacion_clt', '$fecha_autorizacion_giro', '$verifica_1', '$secuencia_transferencia', '$transferencia' )");
         //return $data->result();
         return true;
     }
@@ -133,7 +133,7 @@ class Model_Expediente extends CI_Model
     public function del_tipo_operacion($ano_eje)
     {
         $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("delete from del_tipo_operacion where ano_eje = '" . $ano_eje . "'");
+        $data      = $db_prueba->query("delete from tipo_operacion where ano_eje = '" . $ano_eje . "'");
         //return $data->result();
         return true;
     }
@@ -144,7 +144,7 @@ class Model_Expediente extends CI_Model
         $data      = $db_prueba->query("INSERT INTO [dbo].[tipo_operacion]
            ([ano_eje], [tipo_operacion], [nombre], [ambito], [descripcion_abreviada], [fecha_generacion], [estado], [ciclo], [es_compromiso_anual], [es_ft], [es_sunat], [es_reciproca], [es_reciproca_compromiso])
      VALUES
-           ($ano_eje, $tipo_operacion, $nombre, $ambito, $descripcion_abreviada, $fecha_generacion, $estado, $ciclo, $es_compromiso_anual, $es_ft, $es_sunat, $es_reciproca, $es_reciproca_compromiso)");
+           ( '$ano_eje', '$tipo_operacion', '$nombre', '$ambito', '$descripcion_abreviada', '$fecha_generacion', '$estado', '$ciclo', '$es_compromiso_anual', '$es_ft', '$es_sunat', '$es_reciproca', '$es_reciproca_compromiso' )");
         //return $data->result();
         return true;
     }

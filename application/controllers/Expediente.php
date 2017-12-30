@@ -16,7 +16,7 @@ class Expediente extends CI_Controller
         //$this->load->model(Model_Expediente::class);
     }
 
-    public function estados($ano_eje, $expediente, $sec_ejec)
+    public function estado_expediente($ano_eje, $expediente, $sec_ejec)
     {
         set_time_limit(0);
         ini_set('memory_limit', '-1');
