@@ -8,7 +8,7 @@ class Model_SeguimientoCertificado extends CI_Model
     }
   //--------------SIAF-----------------------------------------------------------------------------------------------------------------------------
 
-    function listarSeguimientoCertificado($anio)
+    function listarSeguimientoCertificado($anio, $sec_ejec)
 	 {
 
 		 $db_prueba = $this->load->database('SIAF', TRUE);
@@ -18,11 +18,11 @@ class Model_SeguimientoCertificado extends CI_Model
 									act_proy_nombre.es_generico, act_proy_nombre.costo_actual, act_proy_nombre.costo_expediente, act_proy_nombre.costo_viabilidad, 
 									act_proy_nombre.ejecucion_ano_anterior, act_proy_nombre.ind_viabilidad
 									FROM            act_proy_nombre, meta
-									WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (meta.sec_ejec = '000747') AND 
+									WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('".$sec_ejec."')) AND 
 									(act_proy_nombre.tipo_proyecto = '1')  AND (act_proy_nombre.ano_eje ='".$anio."') "); 
 		 return $data->result();
 	 }
-	 function meta($anio)
+	 function meta($anio, $sec_ejec)
 	 {
 	 	 $db_prueba = $this->load->database('SIAF', TRUE);
 		 $data =$db_prueba->query("select  meta.ano_eje, meta.sec_ejec, meta.sec_func, meta.funcion, meta.programa, meta.sub_programa, meta.act_proy, meta.componente, meta.meta, meta.finalidad, 
@@ -31,12 +31,12 @@ class Model_SeguimientoCertificado extends CI_Model
                          meta.cantidad_semestral_inicial, meta.estrategia_nacional, meta.programa_ppto, meta.cantidad_trimestral_01, meta.cantidad_trimestral_01_inicial, 
                          meta.cantidad_trimestral_03, meta.cantidad_trimestral_03_inicial
 						 FROM            act_proy_nombre, meta
-						 WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (meta.sec_ejec = '000747') AND 
+						 WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('".$sec_ejec."')) AND 
 						 (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='".$anio."')"); 
 		return $data->result();
 	 }
 
-	  function gasto($anio)
+	  function gasto($anio, $sec_ejec)
 	 {
 	 	 $db_prueba = $this->load->database('SIAF', TRUE);
 		 $data =$db_prueba->query("select gasto.ano_eje, gasto.sec_ejec, gasto.origen, gasto.fuente_financ, gasto.tipo_recurso, gasto.sec_func, gasto.categ_gasto, gasto.grupo_gasto, 
@@ -45,7 +45,7 @@ class Model_SeguimientoCertificado extends CI_Model
                          gasto.credito, gasto.id_clasificador, gasto.monto_financ1, gasto.monto_financ2, gasto.compromiso, gasto.devengado, gasto.girado, gasto.pagado, 
                          gasto.monto_certificado, gasto.monto_comprometido_anual, gasto.monto_precertificado FROM   gasto, meta, act_proy_nombre
 						 WHERE  gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND meta.ano_eje = act_proy_nombre.ano_eje AND 
-						 meta.act_proy = act_proy_nombre.act_proy AND (meta.sec_ejec = '000747') AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='".$anio."')"); 
+						 meta.act_proy = act_proy_nombre.act_proy AND (val(meta.sec_ejec) = val('".$sec_ejec."')) AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='".$anio."')"); 
 		return $data->result();
 	 }
 
@@ -96,12 +96,35 @@ class Model_SeguimientoCertificado extends CI_Model
 		 return true;
 	 } 
 
-	 function EliminarDataSIAFLocalSeguimientoAnio($anio)//Delet 
+	 function EliminarDataSIAFLocalSeguimientoAnio($anio, $sec_ejec)//Delet 
 	 {
 	 	$db_prueba = $this->load->database('DBSIAF', TRUE);
-		$data =$db_prueba->query("exec sp_Gestionar_SIAF @opcion='eliminar_proyectos_anio',@anio_meta='".$anio."'"); 
+		$data =$db_prueba->query("BEGIN TRAN T1
+				DELETE gasto
+				FROM           DBSIAF.dbo.act_proy_nombre INNER JOIN
+									DBSIAF.dbo.meta ON act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy INNER JOIN
+									DBSIAF.dbo.gasto ON meta.ano_eje = gasto.ano_eje AND meta.sec_ejec = gasto.sec_ejec AND meta.sec_func = gasto.sec_func
+				WHERE        (meta.sec_ejec = '".$sec_ejec."') 
+						  AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = '".$anio."')						
+				--IF OBJECT_ID('tempdb.dbo.#RecordsToDelete', 'U') IS NOT NULL
+				--DROP TABLE #RecordsToDelete; 
+				SELECT distinct meta.ano_eje, meta.act_proy INTO #RecordsToDelete
+				FROM            DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
+				WHERE         (meta.sec_ejec = '".$sec_ejec."') 
+					   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = '".$anio."')
+				
+				DELETE meta
+				FROM            DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
+				WHERE         (meta.sec_ejec = '".$sec_ejec."')    
+					   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = '".$anio."')		    
+
+				DELETE act_proy_nombre
+				FROM   DBSIAF.dbo.act_proy_nombre inner join #RecordsToDelete on act_proy_nombre.ano_eje = #RecordsToDelete.ano_eje 
+					   AND act_proy_nombre.act_proy = #RecordsToDelete.act_proy
+				WHERE  (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje =  '".$anio."')
+				
+				DROP TABLE #RecordsToDelete; 
+			COMMIT TRAN T1"); 
 		return true;
 	 }
-
-
 }

@@ -282,26 +282,28 @@ class Importacion extends CI_Controller
         echo json_encode($data, JSON_FORCE_OBJECT);
     }
 
-    public function anio($anio = null)
+    public function anio($anio = null, $sec_ejec = null)
     {
         set_time_limit(0);
         ini_set('memory_limit', '-1');
 
+        if(is_null($sec_ejec))
+            $sec_ejec = '000747';
+
         $data['mensaje']   = 'Hubo un problema en la base de datos confirme las tablas por favor'+$anio;
         $data['actualizo'] = false;
-
+        //echo json_encode($data, JSON_FORCE_OBJECT);
         if (is_numeric($anio)) {
 
-            if (count($this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio)) > 0) {
+            if (count($this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $sec_ejec)) > 0) {
 
                 try {
 
                     $this->db->trans_start();
-                    $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio); //gasto
+                    $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $sec_ejec); //gasto
 
-                    $dataSeguimientoCertificado = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio); //act_proy_nombre
+                    $dataSeguimientoCertificado = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $sec_ejec); //act_proy_nombre
                     foreach ($dataSeguimientoCertificado as $itemp) {
-                        //$count +=1;
 
                         $ano_eje                = $itemp->ano_eje;
                         $act_proy               = $itemp->act_proy;
@@ -326,7 +328,7 @@ class Importacion extends CI_Controller
                         $ind_viabilidad         = $itemp->ind_viabilidad;
                         $this->Model_SeguimientoCertificado->insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
                     }
-                    $meta = $this->Model_SeguimientoCertificado->meta($anio);
+                    $meta = $this->Model_SeguimientoCertificado->meta($anio, $sec_ejec);
                     foreach ($meta as $itemp) {
                         $ano_eje                        = $itemp->ano_eje;
                         $sec_ejec                       = $itemp->sec_ejec;
@@ -368,7 +370,7 @@ class Importacion extends CI_Controller
                             $cantidad_trimestral_03_inicial);
                     }
 
-                    $gasto = $this->Model_SeguimientoCertificado->gasto($anio);
+                    $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $sec_ejec);
                     foreach ($gasto as $itemp) {
                         $ano_eje                  = $itemp->ano_eje;
                         $sec_ejec                 = $itemp->sec_ejec;
