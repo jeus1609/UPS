@@ -420,7 +420,7 @@ class Importacion extends CI_Controller
 
                     $this->db->trans_complete();
 
-                    $data['mensaje']   = 'Informacion de Proyectos al anio '.$anio.'fueron actualizados correctamente';
+                    $data['mensaje']   = 'Informacion de Proyectos al anio '.$anio.' y Unidad ejecutora '.$sec_ejec.' fueron actualizados correctamente';
                     $data['actualizo'] = true;
 
                 } catch (Exception $e) {
@@ -428,7 +428,7 @@ class Importacion extends CI_Controller
                     $data['mensaje'] = 'Proyectos no actualizados, ocurrio un error durante la actualizacion';
                 }
             } else {
-                $data['mensaje'] = 'No existe proyectos para actualizar con Anio '.$anio;
+                $data['mensaje'] = 'No existe proyectos para actualizar con Anio '.$anio.' y Unidad ejecutora '.$sec_ejec.'';
             }
         } else {
             $data['mensaje'] = 'Ingrese Anio Valido';
