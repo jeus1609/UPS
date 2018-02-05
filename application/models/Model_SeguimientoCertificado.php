@@ -39,13 +39,7 @@ class Model_SeguimientoCertificado extends CI_Model
 	  function gasto($anio, $sec_ejec)
 	 {
 	 	 $db_prueba = $this->load->database('SIAF', TRUE);
-		 $data =$db_prueba->query("select gasto.ano_eje, gasto.sec_ejec, gasto.origen, gasto.fuente_financ, gasto.tipo_recurso, gasto.sec_func, gasto.categ_gasto, gasto.grupo_gasto, 
-                         gasto.modalidad_gasto, gasto.elemento_gasto, gasto.presupuesto, gasto.m01, gasto.m02, gasto.m03, gasto.m04, gasto.m05, gasto.m06, gasto.m07, gasto.m08, 
-                         gasto.m09, gasto.m10, gasto.m11, gasto.m12, gasto.modificacion, gasto.ejecucion, gasto.monto_a_solicitado, gasto.monto_de_solicitado, gasto.ampliacion, 
-                         gasto.credito, gasto.id_clasificador, gasto.monto_financ1, gasto.monto_financ2, gasto.compromiso, gasto.devengado, gasto.girado, gasto.pagado, 
-                         gasto.monto_certificado, gasto.monto_comprometido_anual, gasto.monto_precertificado FROM   gasto, meta, act_proy_nombre
-						 WHERE  gasto.ano_eje = meta.ano_eje AND gasto.sec_ejec = meta.sec_ejec AND gasto.sec_func = meta.sec_func AND meta.ano_eje = act_proy_nombre.ano_eje AND 
-						 meta.act_proy = act_proy_nombre.act_proy AND (val(meta.sec_ejec) = val('".$sec_ejec."')) AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='".$anio."')"); 
+		 $data =$db_prueba->query("select    *	FROM            gasto WHERE        ano_eje = '$anio' AND (sec_ejec = '$sec_ejec')"); 
 		return $data->result();
 	 }
 
@@ -55,7 +49,7 @@ class Model_SeguimientoCertificado extends CI_Model
 
 		 $db_prueba = $this->load->database('DBSIAF', TRUE);
 		 $data =$db_prueba->query("insert into act_proy_nombre (ano_eje,act_proy,tipo_act_proy,nombre,estado,ambito,es_presupuestal,sector_snip,naturaleza_snip,intervencion_snip,tipo_proyecto,proyecto_snip,ambito_en,es_foniprel,ambito_programa,es_generico,costo_actual,costo_expediente,costo_viabilidad,ejecucion_ano_anterior,ind_viabilidad)
-		  											     values('$ano_eje','$act_proy','$tipo_act_proy','$nombre','$estado','$ambito','$es_presupuestal','$sector_snip','$naturaleza_snip','$intervencion_snip','$tipo_proyecto','$proyecto_snip','$ambito_en','$es_foniprel','$ambito_programa','$es_generico',$costo_actual,$costo_expediente,$costo_viabilidad,$ejecucion_ano_anterior,'$ind_viabilidad')"); 
+		  											     values('$ano_eje','$act_proy','$tipo_act_proy','$nombre','$estado','$ambito','$es_presupuestal','$sector_snip','$naturaleza_snip','$intervencion_snip','$tipo_proyecto','$proyecto_snip','$ambito_en','$es_foniprel','$ambito_programa','$es_generico','$costo_actual','$costo_expediente','$costo_viabilidad','$ejecucion_ano_anterior','$ind_viabilidad')"); 
 		 return true;
 	 }
 
@@ -71,57 +65,56 @@ class Model_SeguimientoCertificado extends CI_Model
 							                         provincia, fecha_ing, usuario_ing, fecha_mod, usuario_mod, estado, distrito, unidad_medida, cantidad_inicial, unidad_medida_inicial, es_pia, cantidad_semestral, 
 							                         cantidad_semestral_inicial, estrategia_nacional, programa_ppto, cantidad_trimestral_01, cantidad_trimestral_01_inicial, cantidad_trimestral_03, 
 							                         cantidad_trimestral_03_inicial) values ('$ano_eje', '$sec_ejec', '$sec_func', '$funcion', '$programa', '$sub_programa', '$act_proy', '$componente', '$meta', '$finalidad', '$nombre', $monto, $cantidad, '$unidad_med', '$departamento', 
-																                         	'$provincia', '$fecha_ing', '$usuario_ing', '$fecha_mod', '$usuario_mod', '$estado', '$distrito', '$unidad_medida', $cantidad_inicial, '$unidad_medida_inicial', '$es_pia', $cantidad_semestral, 
-																                         	$cantidad_semestral_inicial, '$estrategia_nacional', '$programa_ppto', $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03, 
-																                         	$cantidad_trimestral_03_inicial)"); 
+																                         	'$provincia', '$fecha_ing', '$usuario_ing', '$fecha_mod', '$usuario_mod', '$estado', '$distrito', '$unidad_medida', $cantidad_inicial, '$unidad_medida_inicial', '$es_pia', '$cantidad_semestral', 
+																                         	'$cantidad_semestral_inicial', '$estrategia_nacional', '$programa_ppto', '$cantidad_trimestral_01', '$cantidad_trimestral_01_inicial', '$cantidad_trimestral_03', 
+																                         	'$cantidad_trimestral_03_inicial')"); 
 		 return true;
 	 }
 	
 
-	   function insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto,$grupo_gasto, 
-                         $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, 
-                         $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, 
-                         $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, 
-                         $monto_certificado, $monto_comprometido_anual, $monto_precertificado)
+	   function insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado)
 	 {
 
 		 $db_prueba = $this->load->database('DBSIAF', TRUE);
-		 $data =$db_prueba->query("insert into gasto (ano_eje, sec_ejec, origen, fuente_financ, tipo_recurso, sec_func, categ_gasto, grupo_gasto, modalidad_gasto, elemento_gasto,
-		 											 presupuesto, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, modificacion, ejecucion, monto_a_solicitado, monto_de_solicitado, 
-		 											 ampliacion, credito, id_clasificador, monto_financ1, monto_financ2, compromiso, devengado, girado, pagado, monto_certificado, monto_comprometido_anual, 
-		 											 monto_precertificado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto','$grupo_gasto', 
-									                 '$modalidad_gasto', '$elemento_gasto', $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08,$m09, $m10, $m11, $m12, $modificacion, $ejecucion, 
-									                 $monto_a_solicitado, $monto_de_solicitado, $ampliacion,$credito,'$id_clasificador', $monto_financ1, $monto_financ2, $compromiso, $devengado, 
-									                 $girado, $pagado,$monto_certificado, $monto_comprometido_anual, $monto_precertificado)"); 
+		 $data =$db_prueba->query("insert INTO [dbo].[gasto]
+           (
+           [ano_eje], [sec_ejec], [origen], [fuente_financ], [tipo_recurso], [sec_func], [categ_gasto], [grupo_gasto], [modalidad_gasto], [elemento_gasto], [presupuesto], [m01], [m02], [m03], [m04], [m05], [m06], [m07], [m08], [m09], [m10], [m11], [m12], [modificacion], [ejecucion], [monto_a_solicitado], [monto_de_solicitado], [ampliacion], [credito], [id_clasificador], [monto_financ1], [monto_financ2], [compromiso], [devengado], [girado], [pagado], [monto_certificado], [monto_comprometido_anual], [monto_precertificado]
+           )
+     VALUES
+           (
+           '$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto', '$grupo_gasto', '$modalidad_gasto', '$elemento_gasto', '$presupuesto', '$m01', '$m02', '$m03', '$m04', '$m05', '$m06', '$m07', '$m08', '$m09', '$m10', '$m11', '$m12', '$modificacion', '$ejecucion', '$monto_a_solicitado', '$monto_de_solicitado', '$ampliacion', '$credito', '$id_clasificador', '$monto_financ1', '$monto_financ2', '$compromiso', '$devengado', '$girado', '$pagado', '$monto_certificado', '$monto_comprometido_anual', '$monto_precertificado'
+           )"); 
 		 return true;
-	 } 
+	 }
 
 	 function EliminarDataSIAFLocalSeguimientoAnio($anio, $sec_ejec)//Delet 
 	 {
 	 	$db_prueba = $this->load->database('DBSIAF', TRUE);
-		$data =$db_prueba->query("BEGIN TRAN T1
+		$data =$db_prueba->query("
+				DECLARE @anio varchar(50)='$anio', @sec_ejec varchar(50)='$sec_ejec'
+				BEGIN TRAN T1
 				DELETE gasto
 				FROM           DBSIAF.dbo.act_proy_nombre INNER JOIN
 									DBSIAF.dbo.meta ON act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy INNER JOIN
 									DBSIAF.dbo.gasto ON meta.ano_eje = gasto.ano_eje AND meta.sec_ejec = gasto.sec_ejec AND meta.sec_func = gasto.sec_func
-				WHERE        ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( '".$sec_ejec."' as int ),0)) 
-						  AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = '".$anio."')						
+				WHERE        ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0)) 
+						  AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)						
 				--IF OBJECT_ID('tempdb.dbo.#RecordsToDelete', 'U') IS NOT NULL
 				--DROP TABLE #RecordsToDelete; 
 				SELECT distinct meta.ano_eje, meta.act_proy INTO #RecordsToDelete
 				FROM            DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
-				WHERE         ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( '".$sec_ejec."' as int ),0) ) 
-					   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = '".$anio."')
+				WHERE         ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0) ) 
+					   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
 				
 				DELETE meta
 				FROM            DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
-				WHERE         ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( '".$sec_ejec."' as int ),0) )    
-					   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = '".$anio."')		    
+				WHERE         ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0) )    
+					   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)		    
 
 				DELETE act_proy_nombre
 				FROM   DBSIAF.dbo.act_proy_nombre inner join #RecordsToDelete on act_proy_nombre.ano_eje = #RecordsToDelete.ano_eje 
 					   AND act_proy_nombre.act_proy = #RecordsToDelete.act_proy
-				WHERE  (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje =  '".$anio."')
+				WHERE  (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
 				
 				DROP TABLE #RecordsToDelete; 
 			COMMIT TRAN T1"); 

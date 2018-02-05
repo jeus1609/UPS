@@ -287,11 +287,13 @@ class Importacion extends CI_Controller
         set_time_limit(0);
         ini_set('memory_limit', '-1');
 
-        if(is_null($unidad_ejec))
+        if (is_null($unidad_ejec)) {
             $unidad_ejec = '000747';
+        }
 
-        $data['mensaje']   = 'Hubo un problema en la base de datos confirme las tablas por favor'+$anio;
-        $data['actualizo'] = false;
+        $data['mensaje']    = 'Hubo un problema en la base de datos confirme las tablas por favor'+$anio;
+        $data['actualizo']  = false;
+        $data['cant_gasto'] = 0;
         //echo json_encode($data, JSON_FORCE_OBJECT);
         if (is_numeric($anio)) {
 
@@ -411,16 +413,14 @@ class Importacion extends CI_Controller
                         $monto_certificado        = $itemp->monto_certificado;
                         $monto_comprometido_anual = $itemp->monto_comprometido_anual;
                         $monto_precertificado     = $itemp->monto_precertificado;
-                        $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto,
-                            $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08,
-                            $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion,
-                            $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado,
-                            $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
+
+                        $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
+                        $data['cant_gasto'] = $data['cant_gasto'] + 1;                        
                     }
 
                     $this->db->trans_complete();
 
-                    $data['mensaje']   = 'Informacion de Proyectos al anio '.$anio.' y Unidad ejecutora '.$unidad_ejec.' fueron actualizados correctamente';
+                    $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
                     $data['actualizo'] = true;
 
                 } catch (Exception $e) {
@@ -428,7 +428,7 @@ class Importacion extends CI_Controller
                     $data['mensaje'] = 'Proyectos no actualizados, ocurrio un error durante la actualizacion';
                 }
             } else {
-                $data['mensaje'] = 'No existe proyectos para actualizar con Anio '.$anio.' y Unidad ejecutora '.$unidad_ejec.'';
+                $data['mensaje'] = 'No existe proyectos para actualizar con Anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . '';
             }
         } else {
             $data['mensaje'] = 'Ingrese Anio Valido';
