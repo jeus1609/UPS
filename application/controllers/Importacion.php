@@ -497,6 +497,16 @@ class Importacion extends CI_Controller
                         $this->Model_SeguimientoCertificado->insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp);
                     }
 
+                    $tipo_transaccion = $this->Model_SeguimientoCertificado->tipo_transaccion($anio);
+                    foreach ($tipo_transaccion as $row) {  
+                        $ano_eje = $row->ano_eje;
+                        $tipo_transaccion = $row->tipo_transaccion;
+                        $descripcion = $row->descripcion;
+                        $estado = $row->estado;
+
+                        $this->Model_SeguimientoCertificado->insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado);
+                    }
+
                     $this->db->trans_complete();
 
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
