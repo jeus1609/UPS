@@ -85,6 +85,20 @@ class Model_SeguimientoCertificado extends CI_Model
 		return $data->result();
 	 }
 
+	 function fuente_financ($anio)
+	 {
+	 	 $db_prueba = $this->load->database('SIAF', TRUE);
+		 $data =$db_prueba->query("select *	FROM fuente_financ WHERE ano_eje = '$anio'"); 
+		return $data->result();
+	 }
+
+	 function finalidad($anio)
+	 {
+	 	 $db_prueba = $this->load->database('SIAF', TRUE);
+		 $data =$db_prueba->query("select *	FROM finalidad WHERE ano_eje = '$anio'"); 
+		return $data->result();
+	 }
+
 	  //--------------DBSIAF-----------------------------------------------------------------------------------------------------------------------------
 	 function insert_act_proy_nombre($ano_eje,$act_proy,$tipo_act_proy,$nombre,$estado,$ambito,$es_presupuestal,$sector_snip,$naturaleza_snip,$intervencion_snip,$tipo_proyecto,$proyecto_snip,$ambito_en,$es_foniprel,$ambito_programa,$es_generico,$costo_actual,$costo_expediente,$costo_viabilidad,$ejecucion_ano_anterior,$ind_viabilidad)
 	 {
@@ -190,6 +204,26 @@ class Model_SeguimientoCertificado extends CI_Model
 		           ([ano_eje], [tipo_transaccion], [descripcion], [estado])
 		     VALUES
 		           ('$ano_eje', '$tipo_transaccion', '$descripcion', '$estado')");
+		 return true;
+	 }
+
+	 function insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm)
+	 {
+		 $db_prueba = $this->load->database('DBSIAF', TRUE);
+		 $data =$db_prueba->query("INSERT INTO [dbo].[fuente_financ]
+	           ([ano_eje], [origen], [fuente_financ], [nombre], [estado], [ambito], [es_presupuestal], [es_modificable], [fuente_financ_agregada], [es_pptm])
+	     VALUES
+	           ('$ano_eje', '$origen', '$fuente_financ', '$nombre', '$estado', '$ambito', '$es_presupuestal', '$es_modificable', '$fuente_financ_agregada', '$es_pptm' )");
+		 return true;
+	 }
+
+	 function insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico)
+	 {
+		 $db_prueba = $this->load->database('DBSIAF', TRUE);
+		 $data =$db_prueba->query("INSERT INTO [dbo].[finalidad]
+	           ([ano_eje], [finalidad], [nombre], [estado], [ambito], [es_presupuestal], [ambito_en], [ambito_programa], [es_generico])
+	     VALUES
+	           ( '$ano_eje', '$finalidad', '$nombre', '$estado', '$ambito', '$es_presupuestal', '$ambito_en', '$ambito_programa', '$es_generico')");
 		 return true;
 	 }
 

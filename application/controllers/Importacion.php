@@ -507,6 +507,37 @@ class Importacion extends CI_Controller
                         $this->Model_SeguimientoCertificado->insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado);
                     }
 
+                    $fuente_financ = $this->Model_SeguimientoCertificado->fuente_financ($anio);
+                    foreach ($fuente_financ as $row) {  
+                        $ano_eje = $row->ano_eje;
+                        $origen = $row->origen;
+                        $fuente_financ = $row->fuente_financ;
+                        $nombre = $row->nombre;
+                        $estado = $row->estado;
+                        $ambito = $row->ambito;
+                        $es_presupuestal = $row->es_presupuestal;
+                        $es_modificable = $row->es_modificable;
+                        $fuente_financ_agregada = $row->fuente_financ_agregada;
+                        $es_pptm = $row->es_pptm;
+
+                        $this->Model_SeguimientoCertificado->insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm);
+                    }
+
+                    $finalidad = $this->Model_SeguimientoCertificado->finalidad($anio);
+                    foreach ($finalidad as $row) {
+                        $ano_eje = $row->ano_eje;
+                        $finalidad = $row->finalidad;
+                        $nombre = $row->nombre;
+                        $estado = $row->estado;
+                        $ambito = $row->ambito;
+                        $es_presupuestal = $row->es_presupuestal;
+                        $ambito_en = $row->ambito_en;
+                        $ambito_programa = $row->ambito_programa;
+                        $es_generico = $row->es_generico;
+
+                        $this->Model_SeguimientoCertificado->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
+                    }
+
                     $this->db->trans_complete();
 
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
