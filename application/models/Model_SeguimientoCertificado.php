@@ -218,12 +218,47 @@ class Model_SeguimientoCertificado extends CI_Model
 	 }
 
 	 function insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico)
-	 {
+	 { 	
 		 $db_prueba = $this->load->database('DBSIAF', TRUE);
-		 $data =$db_prueba->query("INSERT INTO [dbo].[finalidad]
-	           ([ano_eje], [finalidad], [nombre], [estado], [ambito], [es_presupuestal], [ambito_en], [ambito_programa], [es_generico])
-	     VALUES
-	           ( '$ano_eje', '$finalidad', '$nombre', '$estado', '$ambito', '$es_presupuestal', '$ambito_en', '$ambito_programa', '$es_generico')");
+		 // $data =$db_prueba->query("insert into [dbo].[finalidad]
+	   	 //         ([ano_eje], [finalidad], [nombre], [estado], [ambito], [es_presupuestal], [ambito_en], [ambito_programa], [es_generico])
+		 //     VALUES
+		 //           ('$ano_eje', '$finalidad', '".$nombre."', '$estado', '$ambito', '$es_presupuestal', '$ambito_en', '$ambito_programa', '$es_generico')");
+
+		//$ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico
+
+		$data = array(
+				'ano_eje' => $ano_eje,
+				'finalidad' => $finalidad,
+				'nombre' => $nombre,
+				'estado' => $estado,
+				'ambito' => $ambito,
+				'es_presupuestal' => $es_presupuestal,
+				'ambito_en' => $ambito_en,
+				'ambito_programa' => $ambito_programa,
+				'es_generico' => $es_generico
+
+		        // 'title' => 'My title',
+		        // 'name' => 'My Name',
+		        // 'date' => 'My date'
+		);
+
+		//$db_prueba->insert('finalidad', $data);
+
+
+		// $this->db->set('ano_eje', $ano_eje);
+		// $this->db->set('finalidad', $finalidad);
+		// $this->db->set('nombre', $nombre);
+		// $this->db->set('estado', $estado);
+		// $this->db->set('ambito', $ambito);
+		// $this->db->set('es_presupuestal', $es_presupuestal);
+		// $this->db->set('ambito_en', $ambito_en);
+		// $this->db->set('ambito_programa', $ambito_programa);
+		// $this->db->set('es_generico', $es_generico);
+		// $this->db->insert('finalidad');
+
+
+
 		 return true;
 	 }
 
@@ -242,6 +277,9 @@ class Model_SeguimientoCertificado extends CI_Model
 					delete from DBSIAF.dbo.especifica where ano_eje=@anio
 					delete from DBSIAF.dbo.especifica_det where ano_eje=@anio
 					delete from DBSIAF.dbo.tipo_transaccion where ano_eje=@anio
+					delete from DBSIAF.dbo.fuente_financ where ano_eje=@anio
+					delete from DBSIAF.dbo.finalidad where ano_eje=@anio
+					
 
 					DELETE gasto
 					FROM           DBSIAF.dbo.act_proy_nombre INNER JOIN

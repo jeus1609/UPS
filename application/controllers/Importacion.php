@@ -304,208 +304,208 @@ class Importacion extends CI_Controller
                     $this->db->trans_start();
                     $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $unidad_ejec); //gasto
 
-                    $dataSeguimientoCertificado = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec); //act_proy_nombre
-                    foreach ($dataSeguimientoCertificado as $itemp) {
+                    // $dataSeguimientoCertificado = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec); //act_proy_nombre
+                    // foreach ($dataSeguimientoCertificado as $itemp) {
 
-                        $ano_eje                = $itemp->ano_eje;
-                        $act_proy               = $itemp->act_proy;
-                        $tipo_act_proy          = $itemp->tipo_act_proy;
-                        $nombre                 = $itemp->nombre;
-                        $estado                 = $itemp->estado;
-                        $ambito                 = $itemp->ambito;
-                        $es_presupuestal        = $itemp->es_presupuestal;
-                        $sector_snip            = $itemp->sector_snip;
-                        $naturaleza_snip        = $itemp->naturaleza_snip;
-                        $intervencion_snip      = $itemp->intervencion_snip;
-                        $tipo_proyecto          = $itemp->tipo_proyecto;
-                        $proyecto_snip          = $itemp->proyecto_snip;
-                        $ambito_en              = $itemp->ambito_en;
-                        $es_foniprel            = $itemp->es_foniprel;
-                        $ambito_programa        = $itemp->ambito_programa;
-                        $es_generico            = $itemp->es_generico;
-                        $costo_actual           = $itemp->costo_actual;
-                        $costo_expediente       = $itemp->costo_expediente;
-                        $costo_viabilidad       = $itemp->costo_viabilidad;
-                        $ejecucion_ano_anterior = $itemp->ejecucion_ano_anterior;
-                        $ind_viabilidad         = $itemp->ind_viabilidad;
-                        $this->Model_SeguimientoCertificado->insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
-                    }
-                    $meta = $this->Model_SeguimientoCertificado->meta($anio, $unidad_ejec);
-                    foreach ($meta as $itemp) {
-                        $ano_eje                        = $itemp->ano_eje;
-                        $sec_ejec                       = $itemp->sec_ejec;
-                        $sec_func                       = $itemp->sec_func;
-                        $funcion                        = $itemp->funcion;
-                        $programa                       = $itemp->programa;
-                        $sub_programa                   = $itemp->sub_programa;
-                        $act_proy                       = $itemp->act_proy;
-                        $componente                     = $itemp->componente;
-                        $meta                           = $itemp->meta;
-                        $finalidad                      = $itemp->finalidad;
-                        $nombre                         = $itemp->nombre;
-                        $monto                          = $itemp->monto;
-                        $cantidad                       = $itemp->cantidad;
-                        $unidad_med                     = $itemp->unidad_med;
-                        $departamento                   = $itemp->departamento;
-                        $provincia                      = $itemp->provincia;
-                        $fecha_ing                      = $itemp->fecha_ing;
-                        $usuario_ing                    = $itemp->usuario_ing;
-                        $fecha_mod                      = $itemp->fecha_mod;
-                        $usuario_mod                    = $itemp->usuario_mod;
-                        $estado                         = $itemp->estado;
-                        $distrito                       = $itemp->distrito;
-                        $unidad_medida                  = $itemp->unidad_medida;
-                        $cantidad_inicial               = $itemp->cantidad_inicial;
-                        $unidad_medida_inicial          = $itemp->unidad_medida_inicial;
-                        $es_pia                         = $itemp->es_pia;
-                        $cantidad_semestral             = $itemp->cantidad_semestral;
-                        $cantidad_semestral_inicial     = $itemp->cantidad_semestral_inicial;
-                        $estrategia_nacional            = $itemp->estrategia_nacional;
-                        $programa_ppto                  = $itemp->programa_ppto;
-                        $cantidad_trimestral_01         = $itemp->cantidad_trimestral_01;
-                        $cantidad_trimestral_01_inicial = $itemp->cantidad_trimestral_01_inicial;
-                        $cantidad_trimestral_03         = $itemp->cantidad_trimestral_03;
-                        $cantidad_trimestral_03_inicial = $itemp->cantidad_trimestral_03_inicial;
-                        $this->Model_SeguimientoCertificado->insert_Meta($ano_eje, $sec_ejec, $sec_func, $funcion, $programa, $sub_programa, $act_proy, $componente, $meta, $finalidad, $nombre, $monto, $cantidad, $unidad_med, $departamento,
-                            $provincia, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $estado, $distrito, $unidad_medida, $cantidad_inicial, $unidad_medida_inicial, $es_pia, $cantidad_semestral,
-                            $cantidad_semestral_inicial, $estrategia_nacional, $programa_ppto, $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03,
-                            $cantidad_trimestral_03_inicial);
-                    }
+                    //     $ano_eje                = $itemp->ano_eje;
+                    //     $act_proy               = $itemp->act_proy;
+                    //     $tipo_act_proy          = $itemp->tipo_act_proy;
+                    //     $nombre                 = $itemp->nombre;
+                    //     $estado                 = $itemp->estado;
+                    //     $ambito                 = $itemp->ambito;
+                    //     $es_presupuestal        = $itemp->es_presupuestal;
+                    //     $sector_snip            = $itemp->sector_snip;
+                    //     $naturaleza_snip        = $itemp->naturaleza_snip;
+                    //     $intervencion_snip      = $itemp->intervencion_snip;
+                    //     $tipo_proyecto          = $itemp->tipo_proyecto;
+                    //     $proyecto_snip          = $itemp->proyecto_snip;
+                    //     $ambito_en              = $itemp->ambito_en;
+                    //     $es_foniprel            = $itemp->es_foniprel;
+                    //     $ambito_programa        = $itemp->ambito_programa;
+                    //     $es_generico            = $itemp->es_generico;
+                    //     $costo_actual           = $itemp->costo_actual;
+                    //     $costo_expediente       = $itemp->costo_expediente;
+                    //     $costo_viabilidad       = $itemp->costo_viabilidad;
+                    //     $ejecucion_ano_anterior = $itemp->ejecucion_ano_anterior;
+                    //     $ind_viabilidad         = $itemp->ind_viabilidad;
+                    //     $this->Model_SeguimientoCertificado->insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
+                    // }
+                    // $meta = $this->Model_SeguimientoCertificado->meta($anio, $unidad_ejec);
+                    // foreach ($meta as $itemp) {
+                    //     $ano_eje                        = $itemp->ano_eje;
+                    //     $sec_ejec                       = $itemp->sec_ejec;
+                    //     $sec_func                       = $itemp->sec_func;
+                    //     $funcion                        = $itemp->funcion;
+                    //     $programa                       = $itemp->programa;
+                    //     $sub_programa                   = $itemp->sub_programa;
+                    //     $act_proy                       = $itemp->act_proy;
+                    //     $componente                     = $itemp->componente;
+                    //     $meta                           = $itemp->meta;
+                    //     $finalidad                      = $itemp->finalidad;
+                    //     $nombre                         = $itemp->nombre;
+                    //     $monto                          = $itemp->monto;
+                    //     $cantidad                       = $itemp->cantidad;
+                    //     $unidad_med                     = $itemp->unidad_med;
+                    //     $departamento                   = $itemp->departamento;
+                    //     $provincia                      = $itemp->provincia;
+                    //     $fecha_ing                      = $itemp->fecha_ing;
+                    //     $usuario_ing                    = $itemp->usuario_ing;
+                    //     $fecha_mod                      = $itemp->fecha_mod;
+                    //     $usuario_mod                    = $itemp->usuario_mod;
+                    //     $estado                         = $itemp->estado;
+                    //     $distrito                       = $itemp->distrito;
+                    //     $unidad_medida                  = $itemp->unidad_medida;
+                    //     $cantidad_inicial               = $itemp->cantidad_inicial;
+                    //     $unidad_medida_inicial          = $itemp->unidad_medida_inicial;
+                    //     $es_pia                         = $itemp->es_pia;
+                    //     $cantidad_semestral             = $itemp->cantidad_semestral;
+                    //     $cantidad_semestral_inicial     = $itemp->cantidad_semestral_inicial;
+                    //     $estrategia_nacional            = $itemp->estrategia_nacional;
+                    //     $programa_ppto                  = $itemp->programa_ppto;
+                    //     $cantidad_trimestral_01         = $itemp->cantidad_trimestral_01;
+                    //     $cantidad_trimestral_01_inicial = $itemp->cantidad_trimestral_01_inicial;
+                    //     $cantidad_trimestral_03         = $itemp->cantidad_trimestral_03;
+                    //     $cantidad_trimestral_03_inicial = $itemp->cantidad_trimestral_03_inicial;
+                    //     $this->Model_SeguimientoCertificado->insert_Meta($ano_eje, $sec_ejec, $sec_func, $funcion, $programa, $sub_programa, $act_proy, $componente, $meta, $finalidad, $nombre, $monto, $cantidad, $unidad_med, $departamento,
+                    //         $provincia, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $estado, $distrito, $unidad_medida, $cantidad_inicial, $unidad_medida_inicial, $es_pia, $cantidad_semestral,
+                    //         $cantidad_semestral_inicial, $estrategia_nacional, $programa_ppto, $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03,
+                    //         $cantidad_trimestral_03_inicial);
+                    // }
 
-                    $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $unidad_ejec);
-                    foreach ($gasto as $itemp) {
-                        $ano_eje                  = $itemp->ano_eje;
-                        $sec_ejec                 = $itemp->sec_ejec;
-                        $origen                   = $itemp->origen;
-                        $fuente_financ            = $itemp->fuente_financ;
-                        $tipo_recurso             = $itemp->tipo_recurso;
-                        $sec_func                 = $itemp->sec_func;
-                        $categ_gasto              = $itemp->categ_gasto;
-                        $grupo_gasto              = $itemp->grupo_gasto;
-                        $modalidad_gasto          = $itemp->modalidad_gasto;
-                        $elemento_gasto           = $itemp->elemento_gasto;
-                        $presupuesto              = $itemp->presupuesto;
-                        $m01                      = $itemp->m01;
-                        $m02                      = $itemp->m02;
-                        $m03                      = $itemp->m03;
-                        $m04                      = $itemp->m04;
-                        $m05                      = $itemp->m05;
-                        $m06                      = $itemp->m06;
-                        $m07                      = $itemp->m07;
-                        $m08                      = $itemp->m08;
-                        $m09                      = $itemp->m09;
-                        $m10                      = $itemp->m10;
-                        $m11                      = $itemp->m11;
-                        $m12                      = $itemp->m12;
-                        $modificacion             = $itemp->modificacion;
-                        $ejecucion                = $itemp->ejecucion;
-                        $monto_a_solicitado       = $itemp->monto_a_solicitado;
-                        $monto_de_solicitado      = $itemp->monto_de_solicitado;
-                        $ampliacion               = $itemp->ampliacion;
-                        $credito                  = $itemp->credito;
-                        $id_clasificador          = $itemp->id_clasificador;
-                        $monto_financ1            = $itemp->monto_financ1;
-                        $monto_financ2            = $itemp->monto_financ2;
-                        $compromiso               = $itemp->compromiso;
-                        $devengado                = $itemp->devengado;
-                        $girado                   = $itemp->girado;
-                        $pagado                   = $itemp->pagado;
-                        $monto_certificado        = $itemp->monto_certificado;
-                        $monto_comprometido_anual = $itemp->monto_comprometido_anual;
-                        $monto_precertificado     = $itemp->monto_precertificado;
+                    // $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $unidad_ejec);
+                    // foreach ($gasto as $itemp) {
+                    //     $ano_eje                  = $itemp->ano_eje;
+                    //     $sec_ejec                 = $itemp->sec_ejec;
+                    //     $origen                   = $itemp->origen;
+                    //     $fuente_financ            = $itemp->fuente_financ;
+                    //     $tipo_recurso             = $itemp->tipo_recurso;
+                    //     $sec_func                 = $itemp->sec_func;
+                    //     $categ_gasto              = $itemp->categ_gasto;
+                    //     $grupo_gasto              = $itemp->grupo_gasto;
+                    //     $modalidad_gasto          = $itemp->modalidad_gasto;
+                    //     $elemento_gasto           = $itemp->elemento_gasto;
+                    //     $presupuesto              = $itemp->presupuesto;
+                    //     $m01                      = $itemp->m01;
+                    //     $m02                      = $itemp->m02;
+                    //     $m03                      = $itemp->m03;
+                    //     $m04                      = $itemp->m04;
+                    //     $m05                      = $itemp->m05;
+                    //     $m06                      = $itemp->m06;
+                    //     $m07                      = $itemp->m07;
+                    //     $m08                      = $itemp->m08;
+                    //     $m09                      = $itemp->m09;
+                    //     $m10                      = $itemp->m10;
+                    //     $m11                      = $itemp->m11;
+                    //     $m12                      = $itemp->m12;
+                    //     $modificacion             = $itemp->modificacion;
+                    //     $ejecucion                = $itemp->ejecucion;
+                    //     $monto_a_solicitado       = $itemp->monto_a_solicitado;
+                    //     $monto_de_solicitado      = $itemp->monto_de_solicitado;
+                    //     $ampliacion               = $itemp->ampliacion;
+                    //     $credito                  = $itemp->credito;
+                    //     $id_clasificador          = $itemp->id_clasificador;
+                    //     $monto_financ1            = $itemp->monto_financ1;
+                    //     $monto_financ2            = $itemp->monto_financ2;
+                    //     $compromiso               = $itemp->compromiso;
+                    //     $devengado                = $itemp->devengado;
+                    //     $girado                   = $itemp->girado;
+                    //     $pagado                   = $itemp->pagado;
+                    //     $monto_certificado        = $itemp->monto_certificado;
+                    //     $monto_comprometido_anual = $itemp->monto_comprometido_anual;
+                    //     $monto_precertificado     = $itemp->monto_precertificado;
 
-                        $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
-                        $data['cant_gasto'] = $data['cant_gasto'] + 1;
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
+                    //     $data['cant_gasto'] = $data['cant_gasto'] + 1;
+                    // }
 
-                    $generica = $this->Model_SeguimientoCertificado->generica($anio);
-                    foreach ($generica as $row) {                        
-                        $ano_eje  = $row->ano_eje ;
-                        $tipo_transaccion  = $row->tipo_transaccion ;
-                        $generica  = $row->generica ;
-                        $descripcion  = $row->descripcion ;
-                        $id_grupo_clasificador  = $row->id_grupo_clasificador ;
-                        $ambito  = $row->ambito ;
-                        $estado = $row->estado;
+                    // $generica = $this->Model_SeguimientoCertificado->generica($anio);
+                    // foreach ($generica as $row) {                        
+                    //     $ano_eje  = $row->ano_eje ;
+                    //     $tipo_transaccion  = $row->tipo_transaccion ;
+                    //     $generica  = $row->generica ;
+                    //     $descripcion  = $row->descripcion ;
+                    //     $id_grupo_clasificador  = $row->id_grupo_clasificador ;
+                    //     $ambito  = $row->ambito ;
+                    //     $estado = $row->estado;
 
-                        $this->Model_SeguimientoCertificado->insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado);
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado);
+                    // }
 
-                    $subgenerica = $this->Model_SeguimientoCertificado->subgenerica($anio);
-                    foreach ($subgenerica as $row) {   
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $descripcion = $row->descripcion;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
+                    // $subgenerica = $this->Model_SeguimientoCertificado->subgenerica($anio);
+                    // foreach ($subgenerica as $row) {   
+                    //     $ano_eje = $row->ano_eje;
+                    //     $tipo_transaccion = $row->tipo_transaccion;
+                    //     $generica = $row->generica;
+                    //     $subgenerica = $row->subgenerica;
+                    //     $descripcion = $row->descripcion;
+                    //     $ambito = $row->ambito;
+                    //     $estado = $row->estado;
 
-                        $this->Model_SeguimientoCertificado->insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado);
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado);
+                    // }
 
-                    $subgenerica_det = $this->Model_SeguimientoCertificado->subgenerica_det($anio);
-                    foreach ($subgenerica_det as $row) {   
+                    // $subgenerica_det = $this->Model_SeguimientoCertificado->subgenerica_det($anio);
+                    // foreach ($subgenerica_det as $row) {   
                         
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $subgenerica_det = $row->subgenerica_det;
-                        $descripcion = $row->descripcion;
-                        $categoria_gasto = $row->categoria_gasto;
-                        $tipo_act_proy = $row->tipo_act_proy;
-                        $tipo_gasto = $row->tipo_gasto;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
-                        $categoria_ingreso = $row->categoria_ingreso;
+                    //     $ano_eje = $row->ano_eje;
+                    //     $tipo_transaccion = $row->tipo_transaccion;
+                    //     $generica = $row->generica;
+                    //     $subgenerica = $row->subgenerica;
+                    //     $subgenerica_det = $row->subgenerica_det;
+                    //     $descripcion = $row->descripcion;
+                    //     $categoria_gasto = $row->categoria_gasto;
+                    //     $tipo_act_proy = $row->tipo_act_proy;
+                    //     $tipo_gasto = $row->tipo_gasto;
+                    //     $ambito = $row->ambito;
+                    //     $estado = $row->estado;
+                    //     $categoria_ingreso = $row->categoria_ingreso;
 
-                        $this->Model_SeguimientoCertificado->insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso);
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso);
+                    // }
 
-                    $especifica = $this->Model_SeguimientoCertificado->especifica($anio);
-                    foreach ($especifica as $row) {  
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $subgenerica_det = $row->subgenerica_det;
-                        $especifica = $row->especifica;
-                        $descripcion = $row->descripcion;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
+                    // $especifica = $this->Model_SeguimientoCertificado->especifica($anio);
+                    // foreach ($especifica as $row) {  
+                    //     $ano_eje = $row->ano_eje;
+                    //     $tipo_transaccion = $row->tipo_transaccion;
+                    //     $generica = $row->generica;
+                    //     $subgenerica = $row->subgenerica;
+                    //     $subgenerica_det = $row->subgenerica_det;
+                    //     $especifica = $row->especifica;
+                    //     $descripcion = $row->descripcion;
+                    //     $ambito = $row->ambito;
+                    //     $estado = $row->estado;
 
-                        $this->Model_SeguimientoCertificado->insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado);
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado);
+                    // }
 
-                    $especifica_det = $this->Model_SeguimientoCertificado->especifica_det($anio);
-                    foreach ($especifica_det as $row) {  
+                    // $especifica_det = $this->Model_SeguimientoCertificado->especifica_det($anio);
+                    // foreach ($especifica_det as $row) {  
                         
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $subgenerica_det = $row->subgenerica_det;
-                        $especifica = $row->especifica;
-                        $especifica_det = $row->especifica_det;
-                        $id_clasificador = $row->id_clasificador;
-                        $descripcion = $row->descripcion;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
-                        $exclusivo_tp = $row->exclusivo_tp;
+                    //     $ano_eje = $row->ano_eje;
+                    //     $tipo_transaccion = $row->tipo_transaccion;
+                    //     $generica = $row->generica;
+                    //     $subgenerica = $row->subgenerica;
+                    //     $subgenerica_det = $row->subgenerica_det;
+                    //     $especifica = $row->especifica;
+                    //     $especifica_det = $row->especifica_det;
+                    //     $id_clasificador = $row->id_clasificador;
+                    //     $descripcion = $row->descripcion;
+                    //     $ambito = $row->ambito;
+                    //     $estado = $row->estado;
+                    //     $exclusivo_tp = $row->exclusivo_tp;
 
-                        $this->Model_SeguimientoCertificado->insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp);
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp);
+                    // }
 
-                    $tipo_transaccion = $this->Model_SeguimientoCertificado->tipo_transaccion($anio);
-                    foreach ($tipo_transaccion as $row) {  
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $descripcion = $row->descripcion;
-                        $estado = $row->estado;
+                    // $tipo_transaccion = $this->Model_SeguimientoCertificado->tipo_transaccion($anio);
+                    // foreach ($tipo_transaccion as $row) {  
+                    //     $ano_eje = $row->ano_eje;
+                    //     $tipo_transaccion = $row->tipo_transaccion;
+                    //     $descripcion = $row->descripcion;
+                    //     $estado = $row->estado;
 
-                        $this->Model_SeguimientoCertificado->insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado);
-                    }
+                    //     $this->Model_SeguimientoCertificado->insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado);
+                    // }
 
                     $fuente_financ = $this->Model_SeguimientoCertificado->fuente_financ($anio);
                     foreach ($fuente_financ as $row) {  
@@ -523,6 +523,7 @@ class Importacion extends CI_Controller
                         $this->Model_SeguimientoCertificado->insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm);
                     }
 
+                    $contador_finalidad = 0;
                     $finalidad = $this->Model_SeguimientoCertificado->finalidad($anio);
                     foreach ($finalidad as $row) {
                         $ano_eje = $row->ano_eje;
@@ -534,10 +535,13 @@ class Importacion extends CI_Controller
                         $ambito_en = $row->ambito_en;
                         $ambito_programa = $row->ambito_programa;
                         $es_generico = $row->es_generico;
-
-                        $this->Model_SeguimientoCertificado->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
+                        if($contador_finalidad==6295)
+                        {
+                            $this->Model_SeguimientoCertificado->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
+                        }
+                        $contador_finalidad = $contador_finalidad+1;
                     }
-
+                    $data['contador_finalidad']= addslashes("hola's");
                     $this->db->trans_complete();
 
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
