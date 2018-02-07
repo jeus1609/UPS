@@ -535,15 +535,15 @@ class Importacion extends CI_Controller
                         $ambito_en = $row->ambito_en;
                         $ambito_programa = $row->ambito_programa;
                         $es_generico = $row->es_generico;
-                        //if($contador_finalidad==6295)
-                        //{
+                        //if($contador_finalidad==1)
                             $this->Model_SeguimientoCertificado->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
-                        //}
+                        
                         $contador_finalidad = $contador_finalidad+1;
                     }
-                    $data['contador_finalidad']= addslashes("hola's");
+                    
                     $this->db->trans_complete();
 
+                    $data['contador_finalidad']   = $contador_finalidad;
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
                     $data['actualizo'] = true;
 
