@@ -243,7 +243,7 @@ class Model_SeguimientoCertificado extends CI_Model
 		        // 'date' => 'My date'
 		);
 
-		//$db_prueba->insert('finalidad', $data);
+		$db_prueba->insert('finalidad', $data);
 
 
 		// $this->db->set('ano_eje', $ano_eje);
