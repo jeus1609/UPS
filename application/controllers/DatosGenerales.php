@@ -151,7 +151,7 @@ class DatosGenerales extends CI_Controller
 
             $this->db->trans_complete();
 
-            $data['mensaje']            = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
+            $data['mensaje']            = 'Datos Generales del año ' . $anio . ' fueron actualizados correctamente';
             $data['actualizo']          = true;
 
         } catch (Exception $e) {
