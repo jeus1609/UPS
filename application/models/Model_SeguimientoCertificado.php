@@ -21,7 +21,7 @@ class Model_SeguimientoCertificado extends CI_Model
 									act_proy_nombre.ejecucion_ano_anterior, act_proy_nombre.ind_viabilidad
 									FROM            act_proy_nombre, meta
 									WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
-									(act_proy_nombre.tipo_proyecto = '1')  AND (act_proy_nombre.ano_eje ='" . $anio . "') ");
+									/*(act_proy_nombre.tipo_proyecto = '1')  AND*/ (act_proy_nombre.ano_eje ='" . $anio . "') ");
         return $data->result();
     }
     public function meta($anio, $sec_ejec)
@@ -34,7 +34,7 @@ class Model_SeguimientoCertificado extends CI_Model
                          meta.cantidad_trimestral_03, meta.cantidad_trimestral_03_inicial
 						 FROM            act_proy_nombre, meta
 						 WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
-						 (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje ='" . $anio . "')");
+						 /*(act_proy_nombre.tipo_proyecto = '1') AND*/ (act_proy_nombre.ano_eje ='" . $anio . "')");
         return $data->result();
     }
 
@@ -42,62 +42,6 @@ class Model_SeguimientoCertificado extends CI_Model
     {
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select    *	FROM            gasto WHERE        ano_eje = '$anio' AND (sec_ejec = '$sec_ejec')");
-        return $data->result();
-    }
-
-    public function generica($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM generica WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function subgenerica($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM subgenerica WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function subgenerica_det($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM subgenerica_det WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function especifica($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM especifica WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function especifica_det($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM especifica_det WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function tipo_transaccion($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM tipo_transaccion WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function fuente_financ($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM fuente_financ WHERE ano_eje = '$anio'");
-        return $data->result();
-    }
-
-    public function finalidad($anio)
-    {
-        $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select *	FROM finalidad WHERE ano_eje = '$anio'");
         return $data->result();
     }
 
@@ -142,122 +86,26 @@ class Model_SeguimientoCertificado extends CI_Model
         return true;
     }
 
-    public function insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[generica]
-           ([ano_eje], [tipo_transaccion], [generica], [descripcion], [id_grupo_clasificador], [ambito], [estado])
-		     VALUES
-		           (
-		           '$ano_eje', '$tipo_transaccion', '$generica', '$descripcion', '$id_grupo_clasificador', '$ambito', '$estado'
-		           )");
-        return true;
-    }
-
-    public function insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[subgenerica]
-           ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [descripcion], [ambito], [estado])
-		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$descripcion', '$ambito', '$estado')");
-        return true;
-    }
-
-    public function insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[subgenerica_det]
-           ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [subgenerica_det], [descripcion], [categoria_gasto], [tipo_act_proy], [tipo_gasto], [ambito], [estado], [categoria_ingreso])
-			     VALUES
-			           (
-			           '$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$descripcion', '$categoria_gasto', '$tipo_act_proy', '$tipo_gasto', '$ambito', '$estado', '$categoria_ingreso'
-			           )");
-        return true;
-    }
-
-    public function insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[especifica]
-		           ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [subgenerica_det], [especifica], [descripcion], [ambito], [estado])
-		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$especifica', '$descripcion', '$ambito', '$estado')");
-        return true;
-    }
-
-    public function insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[especifica_det]
-		           ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [subgenerica_det], [especifica], [especifica_det], [id_clasificador], [descripcion], [ambito], [estado], [exclusivo_tp])
-		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$especifica', '$especifica_det', '$id_clasificador', '$descripcion', '$ambito', '$estado', '$exclusivo_tp')");
-        return true;
-    }
-
-    public function insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[tipo_transaccion]
-		           ([ano_eje], [tipo_transaccion], [descripcion], [estado])
-		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$descripcion', '$estado')");
-        return true;
-    }
-
-    public function insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm)
-    {
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("INSERT INTO [dbo].[fuente_financ]
-	           ([ano_eje], [origen], [fuente_financ], [nombre], [estado], [ambito], [es_presupuestal], [es_modificable], [fuente_financ_agregada], [es_pptm])
-	     VALUES
-	           ('$ano_eje', '$origen', '$fuente_financ', '$nombre', '$estado', '$ambito', '$es_presupuestal', '$es_modificable', '$fuente_financ_agregada', '$es_pptm' )");
-        return true;
-    }
-
-    public function insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico)
-    {
-    	$caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
-
-        $db_prueba = $this->load->database('DBSIAF', true);
-        $data      = $db_prueba->query("insert into [dbo].[finalidad]
-	   	         ([ano_eje], [finalidad], [nombre], [estado], [ambito], [es_presupuestal], [ambito_en], [ambito_programa], [es_generico])
-		     VALUES
-		           ('$ano_eje', '$finalidad', '$nuevo_nombre', '$estado', '$ambito', '$es_presupuestal', '$ambito_en', '$ambito_programa', '$es_generico')");
-
-        // $data = array(
-        //         'ano_eje' => $ano_eje,
-        //         'finalidad' => $finalidad,
-        //         'nombre' => $nombre,
-        //         'estado' => $estado,
-        //         'ambito' => $ambito,
-        //         'es_presupuestal' => $es_presupuestal,
-        //         'ambito_en' => $ambito_en,
-        //         'ambito_programa' => $ambito_programa,
-        //         'es_generico' => $es_generico
-        // );
-
-        // $db_prueba->insert('finalidad', $data);
-
-        return true;
-    }
-
     public function EliminarDataSIAFLocalSeguimientoAnio($anio, $sec_ejec) //Delet
-
     {
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("
 				DECLARE @anio varchar(50)='$anio', @sec_ejec varchar(50)='$sec_ejec'
 
 				BEGIN TRAN T1
+
+					DELETE gasto where ( ISNULL(TRY_CAST( sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0)) AND ano_eje = @anio
+					DELETE meta	WHERE  ( ISNULL(TRY_CAST( sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0)) AND ano_eje = @anio
+					DELETE act_proy_nombre WHERE ano_eje = @anio
+
+					/*
 					DELETE gasto
 					FROM           DBSIAF.dbo.act_proy_nombre INNER JOIN
 									DBSIAF.dbo.meta ON act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy INNER JOIN
 									DBSIAF.dbo.gasto ON meta.ano_eje = gasto.ano_eje AND meta.sec_ejec = gasto.sec_ejec AND meta.sec_func = gasto.sec_func
 					WHERE        ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0))
-							  AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
+							  AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)				
+
 					--IF OBJECT_ID('tempdb.dbo.#RecordsToDelete', 'U') IS NOT NULL
 					--DROP TABLE #RecordsToDelete;
 					SELECT distinct meta.ano_eje, meta.act_proy INTO #RecordsToDelete
@@ -276,6 +124,7 @@ class Model_SeguimientoCertificado extends CI_Model
 					WHERE  (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
 
 					DROP TABLE #RecordsToDelete;
+					*/
 
 				COMMIT TRAN T1");
         return true;
