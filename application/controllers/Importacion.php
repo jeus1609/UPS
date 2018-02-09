@@ -118,7 +118,6 @@ class Importacion extends CI_Controller
                     }
 
                     foreach ($gasto_DATA as $itemp) {
-//meta
                         $ano_eje                  = $itemp->ano_eje;
                         $sec_ejec                 = $itemp->sec_ejec;
                         $origen                   = $itemp->origen;
@@ -293,8 +292,7 @@ class Importacion extends CI_Controller
 
         $data['mensaje']    = 'Hubo un problema en la base de datos confirme las tablas por favor'+$anio;
         $data['actualizo']  = false;
-        $data['cant_gasto'] = 0;
-        //echo json_encode($data, JSON_FORCE_OBJECT);
+
         if (is_numeric($anio)) {
 
             if (count($this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec)) > 0) {
@@ -415,135 +413,9 @@ class Importacion extends CI_Controller
                         $monto_precertificado     = $itemp->monto_precertificado;
 
                         $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
-                        $data['cant_gasto'] = $data['cant_gasto'] + 1;
-                    }
-
-                    $generica = $this->Model_SeguimientoCertificado->generica($anio);
-                    foreach ($generica as $row) {                        
-                        $ano_eje  = $row->ano_eje ;
-                        $tipo_transaccion  = $row->tipo_transaccion ;
-                        $generica  = $row->generica ;
-                        $descripcion  = $row->descripcion ;
-                        $id_grupo_clasificador  = $row->id_grupo_clasificador ;
-                        $ambito  = $row->ambito ;
-                        $estado = $row->estado;
-
-                        $this->Model_SeguimientoCertificado->insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado);
-                    }
-
-                    $subgenerica = $this->Model_SeguimientoCertificado->subgenerica($anio);
-                    foreach ($subgenerica as $row) {   
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $descripcion = $row->descripcion;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
-
-                        $this->Model_SeguimientoCertificado->insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado);
-                    }
-
-                    $subgenerica_det = $this->Model_SeguimientoCertificado->subgenerica_det($anio);
-                    foreach ($subgenerica_det as $row) {   
-                        
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $subgenerica_det = $row->subgenerica_det;
-                        $descripcion = $row->descripcion;
-                        $categoria_gasto = $row->categoria_gasto;
-                        $tipo_act_proy = $row->tipo_act_proy;
-                        $tipo_gasto = $row->tipo_gasto;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
-                        $categoria_ingreso = $row->categoria_ingreso;
-
-                        $this->Model_SeguimientoCertificado->insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso);
-                    }
-
-                    $especifica = $this->Model_SeguimientoCertificado->especifica($anio);
-                    foreach ($especifica as $row) {  
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $subgenerica_det = $row->subgenerica_det;
-                        $especifica = $row->especifica;
-                        $descripcion = $row->descripcion;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
-
-                        $this->Model_SeguimientoCertificado->insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado);
-                    }
-
-                    $especifica_det = $this->Model_SeguimientoCertificado->especifica_det($anio);
-                    foreach ($especifica_det as $row) {  
-                        
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $generica = $row->generica;
-                        $subgenerica = $row->subgenerica;
-                        $subgenerica_det = $row->subgenerica_det;
-                        $especifica = $row->especifica;
-                        $especifica_det = $row->especifica_det;
-                        $id_clasificador = $row->id_clasificador;
-                        $descripcion = $row->descripcion;
-                        $ambito = $row->ambito;
-                        $estado = $row->estado;
-                        $exclusivo_tp = $row->exclusivo_tp;
-
-                        $this->Model_SeguimientoCertificado->insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp);
-                    }
-
-                    $tipo_transaccion = $this->Model_SeguimientoCertificado->tipo_transaccion($anio);
-                    foreach ($tipo_transaccion as $row) {  
-                        $ano_eje = $row->ano_eje;
-                        $tipo_transaccion = $row->tipo_transaccion;
-                        $descripcion = $row->descripcion;
-                        $estado = $row->estado;
-
-                        $this->Model_SeguimientoCertificado->insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado);
-                    }
-
-                    $fuente_financ = $this->Model_SeguimientoCertificado->fuente_financ($anio);
-                    foreach ($fuente_financ as $row) {  
-                        $ano_eje = $row->ano_eje;
-                        $origen = $row->origen;
-                        $fuente_financ = $row->fuente_financ;
-                        $nombre = $row->nombre;
-                        $estado = $row->estado;
-                        $ambito = $row->ambito;
-                        $es_presupuestal = $row->es_presupuestal;
-                        $es_modificable = $row->es_modificable;
-                        $fuente_financ_agregada = $row->fuente_financ_agregada;
-                        $es_pptm = $row->es_pptm;
-
-                        $this->Model_SeguimientoCertificado->insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm);
-                    }
-
-                    $contador_finalidad = 0;
-                    $finalidad = $this->Model_SeguimientoCertificado->finalidad($anio);
-                    foreach ($finalidad as $row) {
-                        $ano_eje = $row->ano_eje;
-                        $finalidad = $row->finalidad;
-                        $nombre = $row->nombre;
-                        $estado = $row->estado;
-                        $ambito = $row->ambito;
-                        $es_presupuestal = $row->es_presupuestal;
-                        $ambito_en = $row->ambito_en;
-                        $ambito_programa = $row->ambito_programa;
-                        $es_generico = $row->es_generico;
-                        //if($contador_finalidad==1)
-                            $this->Model_SeguimientoCertificado->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
-                        
-                        $contador_finalidad = $contador_finalidad+1;
                     }
                     
                     $this->db->trans_complete();
-
-                    $data['contador_finalidad']   = $contador_finalidad;
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
                     $data['actualizo'] = true;
 

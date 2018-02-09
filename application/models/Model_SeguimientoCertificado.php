@@ -252,18 +252,6 @@ class Model_SeguimientoCertificado extends CI_Model
 				DECLARE @anio varchar(50)='$anio', @sec_ejec varchar(50)='$sec_ejec'
 
 				BEGIN TRAN T1
-
-					--Eliminando datos generales (clasificadores de gastos)
-					delete from DBSIAF.dbo.generica where ano_eje=@anio
-					delete from DBSIAF.dbo.subgenerica where ano_eje=@anio
-					delete from DBSIAF.dbo.subgenerica_det where ano_eje=@anio
-					delete from DBSIAF.dbo.especifica where ano_eje=@anio
-					delete from DBSIAF.dbo.especifica_det where ano_eje=@anio
-					delete from DBSIAF.dbo.tipo_transaccion where ano_eje=@anio
-					delete from DBSIAF.dbo.fuente_financ where ano_eje=@anio
-					delete from DBSIAF.dbo.finalidad where ano_eje=@anio
-
-
 					DELETE gasto
 					FROM           DBSIAF.dbo.act_proy_nombre INNER JOIN
 									DBSIAF.dbo.meta ON act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy INNER JOIN
