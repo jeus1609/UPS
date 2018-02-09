@@ -20,7 +20,7 @@ class Model_SeguimientoCertificado extends CI_Model
 									act_proy_nombre.ejecucion_ano_anterior, act_proy_nombre.ind_viabilidad
 									FROM            act_proy_nombre, meta
 									WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
-									/*(act_proy_nombre.tipo_proyecto = '1')  AND*/ (act_proy_nombre.ano_eje ='" . $anio . "') ");
+									(act_proy_nombre.ano_eje ='" . $anio . "') ");
         return $data->result();
     }
 
@@ -34,7 +34,7 @@ class Model_SeguimientoCertificado extends CI_Model
                          meta.cantidad_trimestral_03, meta.cantidad_trimestral_03_inicial
 						 FROM            act_proy_nombre, meta
 						 WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
-						 /*(act_proy_nombre.tipo_proyecto = '1') AND*/ (act_proy_nombre.ano_eje ='" . $anio . "')");
+						 (act_proy_nombre.ano_eje ='" . $anio . "')");
         return $data->result();
     }
 
