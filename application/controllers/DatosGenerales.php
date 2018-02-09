@@ -149,7 +149,7 @@ class DatosGenerales extends CI_Controller
                 $this->DatosGenerales_Model->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
             }
 
-            $act_proy_nombre          = $this->DatosGenerales_Model->act_proy_nombre($anio);
+            $act_proy_nombre = $this->DatosGenerales_Model->act_proy_nombre($anio);
             foreach ($act_proy_nombre as $row) {                
                 $ano_eje = $row->ano_eje;
                 $act_proy = $row->act_proy;
