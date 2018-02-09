@@ -95,8 +95,18 @@ class Model_SeguimientoCertificado extends CI_Model
 				BEGIN TRAN T1
 
 					DELETE gasto where ( ISNULL(TRY_CAST( sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0)) AND ano_eje = @anio
+					
+					SELECT distinct meta.ano_eje, meta.act_proy INTO #RecordsToDelete
+					FROM  DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
+					WHERE ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0) ) AND (act_proy_nombre.ano_eje = @anio)
+
 					DELETE meta	WHERE  ( ISNULL(TRY_CAST( sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0)) AND ano_eje = @anio
-					DELETE act_proy_nombre WHERE ano_eje = @anio
+					
+					DELETE act_proy_nombre
+					FROM   DBSIAF.dbo.act_proy_nombre inner join #RecordsToDelete on act_proy_nombre.ano_eje = #RecordsToDelete.ano_eje
+						   AND act_proy_nombre.act_proy = #RecordsToDelete.act_proy
+
+					DROP TABLE #RecordsToDelete;
 
 					/*
 					DELETE gasto
