@@ -8,8 +8,7 @@ class Model_SeguimientoCertificado extends CI_Model
     {
         parent::__construct();
     }
-    //--------------SIAF-----------------------------------------------------------------------------------------------------------------------------
-
+    
     public function listarSeguimientoCertificado($anio, $sec_ejec)
     {
         $db_prueba = $this->load->database('SIAF', true);
@@ -91,7 +90,6 @@ class Model_SeguimientoCertificado extends CI_Model
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("
 				DECLARE @anio varchar(50)='$anio', @sec_ejec varchar(50)='$sec_ejec'
-
 				BEGIN TRAN T1
 
 					DELETE gasto where ( ISNULL(TRY_CAST( sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0)) AND ano_eje = @anio
@@ -107,35 +105,6 @@ class Model_SeguimientoCertificado extends CI_Model
 						   AND act_proy_nombre.act_proy = #RecordsToDelete.act_proy
 
 					DROP TABLE #RecordsToDelete;
-
-					/*
-					DELETE gasto
-					FROM           DBSIAF.dbo.act_proy_nombre INNER JOIN
-									DBSIAF.dbo.meta ON act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy INNER JOIN
-									DBSIAF.dbo.gasto ON meta.ano_eje = gasto.ano_eje AND meta.sec_ejec = gasto.sec_ejec AND meta.sec_func = gasto.sec_func
-					WHERE        ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0))
-							  AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)				
-
-					--IF OBJECT_ID('tempdb.dbo.#RecordsToDelete', 'U') IS NOT NULL
-					--DROP TABLE #RecordsToDelete;
-					SELECT distinct meta.ano_eje, meta.act_proy INTO #RecordsToDelete
-					FROM            DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
-					WHERE         ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0) )
-						   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
-
-					DELETE meta
-					FROM            DBSIAF.dbo.act_proy_nombre inner join DBSIAF.dbo.meta on act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy
-					WHERE         ( ISNULL(TRY_CAST( meta.sec_ejec as int ),0)  = ISNULL(TRY_CAST( @sec_ejec as int ),0) )
-						   AND (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
-
-					DELETE act_proy_nombre
-					FROM   DBSIAF.dbo.act_proy_nombre inner join #RecordsToDelete on act_proy_nombre.ano_eje = #RecordsToDelete.ano_eje
-						   AND act_proy_nombre.act_proy = #RecordsToDelete.act_proy
-					WHERE  (act_proy_nombre.tipo_proyecto = '1') AND (act_proy_nombre.ano_eje = @anio)
-
-					DROP TABLE #RecordsToDelete;
-					*/
-
 				COMMIT TRAN T1");
         return true;
     }

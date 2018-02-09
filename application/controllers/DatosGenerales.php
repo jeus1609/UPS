@@ -149,6 +149,33 @@ class DatosGenerales extends CI_Controller
                 $this->DatosGenerales_Model->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
             }
 
+            $act_proy_nombre          = $this->DatosGenerales_Model->act_proy_nombre($anio);
+            foreach ($act_proy_nombre as $row) {                
+                $ano_eje = $row->ano_eje;
+                $act_proy = $row->act_proy;
+                $tipo_act_proy = $row->tipo_act_proy;
+                $nombre = $row->nombre;
+                $estado = $row->estado;
+                $ambito = $row->ambito;
+                $es_presupuestal = $row->es_presupuestal;
+                $sector_snip = $row->sector_snip;
+                $naturaleza_snip = $row->naturaleza_snip;
+                $intervencion_snip = $row->intervencion_snip;
+                $tipo_proyecto = $row->tipo_proyecto;
+                $proyecto_snip = $row->proyecto_snip;
+                $ambito_en = $row->ambito_en;
+                $es_foniprel = $row->es_foniprel;
+                $ambito_programa = $row->ambito_programa;
+                $es_generico = $row->es_generico;
+                $costo_actual = $row->costo_actual;
+                $costo_expediente = $row->costo_expediente;
+                $costo_viabilidad = $row->costo_viabilidad;
+                $ejecucion_ano_anterior = $row->ejecucion_ano_anterior;
+                $ind_viabilidad= $row->ind_viabilidad;
+
+                $this->DatosGenerales_Model->insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
+            }
+
             $this->db->trans_complete();
 
             $data['mensaje']            = 'Datos Generales del año ' . $anio . ' fueron actualizados correctamente';
