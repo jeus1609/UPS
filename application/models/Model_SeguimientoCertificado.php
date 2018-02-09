@@ -12,7 +12,6 @@ class Model_SeguimientoCertificado extends CI_Model
 
     public function listarSeguimientoCertificado($anio, $sec_ejec)
     {
-
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select  distinct act_proy_nombre.ano_eje, act_proy_nombre.act_proy, act_proy_nombre.tipo_act_proy, act_proy_nombre.nombre, act_proy_nombre.estado,
 									act_proy_nombre.ambito, act_proy_nombre.es_presupuestal, act_proy_nombre.sector_snip, act_proy_nombre.naturaleza_snip, act_proy_nombre.intervencion_snip,
@@ -24,6 +23,7 @@ class Model_SeguimientoCertificado extends CI_Model
 									/*(act_proy_nombre.tipo_proyecto = '1')  AND*/ (act_proy_nombre.ano_eje ='" . $anio . "') ");
         return $data->result();
     }
+
     public function meta($anio, $sec_ejec)
     {
         $db_prueba = $this->load->database('SIAF', true);
@@ -76,13 +76,13 @@ class Model_SeguimientoCertificado extends CI_Model
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("insert INTO [dbo].[gasto]
-           (
-           [ano_eje], [sec_ejec], [origen], [fuente_financ], [tipo_recurso], [sec_func], [categ_gasto], [grupo_gasto], [modalidad_gasto], [elemento_gasto], [presupuesto], [m01], [m02], [m03], [m04], [m05], [m06], [m07], [m08], [m09], [m10], [m11], [m12], [modificacion], [ejecucion], [monto_a_solicitado], [monto_de_solicitado], [ampliacion], [credito], [id_clasificador], [monto_financ1], [monto_financ2], [compromiso], [devengado], [girado], [pagado], [monto_certificado], [monto_comprometido_anual], [monto_precertificado]
-           )
-     VALUES
-           (
-           '$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto', '$grupo_gasto', '$modalidad_gasto', '$elemento_gasto', '$presupuesto', '$m01', '$m02', '$m03', '$m04', '$m05', '$m06', '$m07', '$m08', '$m09', '$m10', '$m11', '$m12', '$modificacion', '$ejecucion', '$monto_a_solicitado', '$monto_de_solicitado', '$ampliacion', '$credito', '$id_clasificador', '$monto_financ1', '$monto_financ2', '$compromiso', '$devengado', '$girado', '$pagado', '$monto_certificado', '$monto_comprometido_anual', '$monto_precertificado'
-           )");
+	           (
+	           [ano_eje], [sec_ejec], [origen], [fuente_financ], [tipo_recurso], [sec_func], [categ_gasto], [grupo_gasto], [modalidad_gasto], [elemento_gasto], [presupuesto], [m01], [m02], [m03], [m04], [m05], [m06], [m07], [m08], [m09], [m10], [m11], [m12], [modificacion], [ejecucion], [monto_a_solicitado], [monto_de_solicitado], [ampliacion], [credito], [id_clasificador], [monto_financ1], [monto_financ2], [compromiso], [devengado], [girado], [pagado], [monto_certificado], [monto_comprometido_anual], [monto_precertificado]
+	           )
+	     VALUES
+	           (
+	           '$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso', '$sec_func', '$categ_gasto', '$grupo_gasto', '$modalidad_gasto', '$elemento_gasto', '$presupuesto', '$m01', '$m02', '$m03', '$m04', '$m05', '$m06', '$m07', '$m08', '$m09', '$m10', '$m11', '$m12', '$modificacion', '$ejecucion', '$monto_a_solicitado', '$monto_de_solicitado', '$ampliacion', '$credito', '$id_clasificador', '$monto_financ1', '$monto_financ2', '$compromiso', '$devengado', '$girado', '$pagado', '$monto_certificado', '$monto_comprometido_anual', '$monto_precertificado'
+	           )");
         return true;
     }
 
