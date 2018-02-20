@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>Bienvenido al Importador</h1>
+	<h1>Bienvenido, Usted configuro correctamente la segunda aplicacion SMP</h1>
 
 	<div id="body">
 		<p>Acceda atraves del sistema SMP.</p>

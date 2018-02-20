@@ -11,7 +11,6 @@ class Model_Consulta extends CI_Model
 
     public function validacionAct_proy($CodigoUnico) //act_proy
     {
-
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select ano_eje, act_proy, tipo_act_proy, nombre, estado, ambito, es_presupuestal, sector_snip, naturaleza_snip, intervencion_snip, tipo_proyecto, proyecto_snip,
                   ambito_en, es_foniprel, ambito_programa, es_generico, costo_actual, costo_expediente, costo_viabilidad, ejecucion_ano_anterior, ind_viabilidad
