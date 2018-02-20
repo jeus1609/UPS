@@ -77,7 +77,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$descripcion);
         
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[generica]
@@ -92,7 +92,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$descripcion);
         
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[subgenerica]
@@ -105,7 +105,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$descripcion);
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[subgenerica_det]
@@ -120,7 +120,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$descripcion);
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[especifica]
@@ -133,7 +133,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$especifica);
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[especifica_det]
@@ -146,7 +146,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$descripcion);
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[tipo_transaccion]
