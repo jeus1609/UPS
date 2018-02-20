@@ -22,7 +22,6 @@ class DatosGenerales extends CI_Controller
 
         $data['mensaje']    = 'Hubo un problema en la base de datos error x0012595'+$anio;
         $data['actualizo']  = false;
-        $data['cant_gasto'] = 0;
 
         try {
 
