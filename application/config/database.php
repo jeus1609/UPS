@@ -49,7 +49,7 @@ $db['SIAF'] = array(
 
 $db['DBSIAF'] = array(
 	'dsn'	=> '',
-	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=200.37.200.182;Database=DBSIAF",
+	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=(local);Database=DBSIAF",
 	'username' => 'smp',
 	'password' => 'Semo123',
 	'database' => '',
