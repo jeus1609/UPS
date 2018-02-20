@@ -76,75 +76,96 @@ class DatosGenerales_Model extends CI_Model
  
     public function insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[generica]
            ([ano_eje], [tipo_transaccion], [generica], [descripcion], [id_grupo_clasificador], [ambito], [estado])
 		     VALUES
 		           (
-		           '$ano_eje', '$tipo_transaccion', '$generica', '$descripcion', '$id_grupo_clasificador', '$ambito', '$estado'
+		           '$ano_eje', '$tipo_transaccion', '$generica', '$nuevo_nombre', '$id_grupo_clasificador', '$ambito', '$estado'
 		           )");
         return true;
     }
 
     public function insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+        
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[subgenerica]
            ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [descripcion], [ambito], [estado])
 		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$descripcion', '$ambito', '$estado')");
+		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$nuevo_nombre', '$ambito', '$estado')");
         return true;
     }
 
     public function insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[subgenerica_det]
            ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [subgenerica_det], [descripcion], [categoria_gasto], [tipo_act_proy], [tipo_gasto], [ambito], [estado], [categoria_ingreso])
 			     VALUES
 			           (
-			           '$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$descripcion', '$categoria_gasto', '$tipo_act_proy', '$tipo_gasto', '$ambito', '$estado', '$categoria_ingreso'
+			           '$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$nuevo_nombre', '$categoria_gasto', '$tipo_act_proy', '$tipo_gasto', '$ambito', '$estado', '$categoria_ingreso'
 			           )");
         return true;
     }
 
     public function insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[especifica]
 		           ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [subgenerica_det], [especifica], [descripcion], [ambito], [estado])
 		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$especifica', '$descripcion', '$ambito', '$estado')");
+		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$especifica', '$nuevo_nombre', '$ambito', '$estado')");
         return true;
     }
 
     public function insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[especifica_det]
 		           ([ano_eje], [tipo_transaccion], [generica], [subgenerica], [subgenerica_det], [especifica], [especifica_det], [id_clasificador], [descripcion], [ambito], [estado], [exclusivo_tp])
 		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$especifica', '$especifica_det', '$id_clasificador', '$descripcion', '$ambito', '$estado', '$exclusivo_tp')");
+		           ('$ano_eje', '$tipo_transaccion', '$generica', '$subgenerica', '$subgenerica_det', '$especifica', '$especifica_det', '$id_clasificador', '$nuevo_nombre', '$ambito', '$estado', '$exclusivo_tp')");
         return true;
     }
 
     public function insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[tipo_transaccion]
 		           ([ano_eje], [tipo_transaccion], [descripcion], [estado])
 		     VALUES
-		           ('$ano_eje', '$tipo_transaccion', '$descripcion', '$estado')");
+		           ('$ano_eje', '$tipo_transaccion', '$nuevo_nombre', '$estado')");
         return true;
     }
 
     public function insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm)
     {
+        $caracteres_prohibidos = array("'","/","<",">",";");    
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$nombre);
+
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[fuente_financ]
 	           ([ano_eje], [origen], [fuente_financ], [nombre], [estado], [ambito], [es_presupuestal], [es_modificable], [fuente_financ_agregada], [es_pptm])
 	     VALUES
-	           ('$ano_eje', '$origen', '$fuente_financ', '$nombre', '$estado', '$ambito', '$es_presupuestal', '$es_modificable', '$fuente_financ_agregada', '$es_pptm' )");
+	           ('$ano_eje', '$origen', '$fuente_financ', '$nuevo_nombre', '$estado', '$ambito', '$es_presupuestal', '$es_modificable', '$fuente_financ_agregada', '$es_pptm' )");
         return true;
     }
 
