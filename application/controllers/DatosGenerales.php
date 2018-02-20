@@ -30,6 +30,7 @@ class DatosGenerales extends CI_Controller
             $this->DatosGenerales_Model->delete_DatosGenerales($anio); //gasto
 
             $generica = $this->DatosGenerales_Model->generica($anio);
+            $data['generica'] = 0;
             foreach ($generica as $row) {
                 $ano_eje               = $row->ano_eje;
                 $tipo_transaccion      = $row->tipo_transaccion;
@@ -40,9 +41,11 @@ class DatosGenerales extends CI_Controller
                 $estado                = $row->estado;
 
                 $this->DatosGenerales_Model->insert_generica($ano_eje, $tipo_transaccion, $generica, $descripcion, $id_grupo_clasificador, $ambito, $estado);
+                $data['generica']++;
             }
 
             $subgenerica = $this->DatosGenerales_Model->subgenerica($anio);
+            $data['subgenerica'] = 0;
             foreach ($subgenerica as $row) {
                 $ano_eje          = $row->ano_eje;
                 $tipo_transaccion = $row->tipo_transaccion;
@@ -53,9 +56,11 @@ class DatosGenerales extends CI_Controller
                 $estado           = $row->estado;
 
                 $this->DatosGenerales_Model->insert_subgenerica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $descripcion, $ambito, $estado);
+                $data['subgenerica']++;
             }
 
             $subgenerica_det = $this->DatosGenerales_Model->subgenerica_det($anio);
+            $data['subgenerica_det'] = 0;
             foreach ($subgenerica_det as $row) {
 
                 $ano_eje           = $row->ano_eje;
@@ -72,8 +77,10 @@ class DatosGenerales extends CI_Controller
                 $categoria_ingreso = $row->categoria_ingreso;
 
                 $this->DatosGenerales_Model->insert_subgenerica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $descripcion, $categoria_gasto, $tipo_act_proy, $tipo_gasto, $ambito, $estado, $categoria_ingreso);
+                $data['subgenerica_det']++;
             }
 
+            $data['especifica'] = 0;
             $especifica = $this->DatosGenerales_Model->especifica($anio);
             foreach ($especifica as $row) {
                 $ano_eje          = $row->ano_eje;
@@ -87,9 +94,11 @@ class DatosGenerales extends CI_Controller
                 $estado           = $row->estado;
 
                 $this->DatosGenerales_Model->insert_especifica($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $descripcion, $ambito, $estado);
+                $data['especifica']++;
             }
 
             $especifica_det = $this->DatosGenerales_Model->especifica_det($anio);
+            $data['especifica_det'] = 0;
             foreach ($especifica_det as $row) {
 
                 $ano_eje          = $row->ano_eje;
@@ -106,9 +115,11 @@ class DatosGenerales extends CI_Controller
                 $exclusivo_tp     = $row->exclusivo_tp;
 
                 $this->DatosGenerales_Model->insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp);
+                $data['especifica_det']++;
             }
 
             $tipo_transaccion = $this->DatosGenerales_Model->tipo_transaccion($anio);
+            $data['tipo_transaccion'] = 0;
             foreach ($tipo_transaccion as $row) {
                 $ano_eje          = $row->ano_eje;
                 $tipo_transaccion = $row->tipo_transaccion;
@@ -116,9 +127,11 @@ class DatosGenerales extends CI_Controller
                 $estado           = $row->estado;
 
                 $this->DatosGenerales_Model->insert_tipo_transaccion($ano_eje, $tipo_transaccion, $descripcion, $estado);
+                $data['tipo_transaccion']++;
             }
 
             $fuente_financ = $this->DatosGenerales_Model->fuente_financ($anio);
+            $data['fuente_financ'] = 0;
             foreach ($fuente_financ as $row) {
                 $ano_eje                = $row->ano_eje;
                 $origen                 = $row->origen;
@@ -132,9 +145,11 @@ class DatosGenerales extends CI_Controller
                 $es_pptm                = $row->es_pptm;
 
                 $this->DatosGenerales_Model->insert_fuente_financ($ano_eje, $origen, $fuente_financ, $nombre, $estado, $ambito, $es_presupuestal, $es_modificable, $fuente_financ_agregada, $es_pptm);
+                $data['fuente_financ']++;
             }
 
             $finalidad          = $this->DatosGenerales_Model->finalidad($anio);
+            $data['finalidad'] = 0;
             foreach ($finalidad as $row) {
                 $ano_eje         = $row->ano_eje;
                 $finalidad       = $row->finalidad;
@@ -147,9 +162,11 @@ class DatosGenerales extends CI_Controller
                 $es_generico     = $row->es_generico;
                 //if($contador_finalidad==1)
                 $this->DatosGenerales_Model->insert_finalidad($ano_eje, $finalidad, $nombre, $estado, $ambito, $es_presupuestal, $ambito_en, $ambito_programa, $es_generico);
+                $data['finalidad']++;
             }
 
             $act_proy_nombre = $this->DatosGenerales_Model->act_proy_nombre($anio);
+            $data['act_proy_nombre'] = 0;
             foreach ($act_proy_nombre as $row) {                
                 $ano_eje = $row->ano_eje;
                 $act_proy = $row->act_proy;
@@ -174,6 +191,7 @@ class DatosGenerales extends CI_Controller
                 $ind_viabilidad= $row->ind_viabilidad;
 
                 $this->DatosGenerales_Model->insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
+                $data['act_proy_nombre']++;
             }
 
             $this->db->trans_complete();
