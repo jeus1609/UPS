@@ -18,6 +18,16 @@ class Expediente extends CI_Controller
 
     public function estado_expediente($ano_eje, $expediente, $sec_ejec)
     {
+        $long_exp = strlen($expediente);
+        $cadena_ceros = '';
+        for ($i=0; $i < (10-$long_exp); $i++) { 
+            $cadena_ceros.='0';
+        }
+
+        $expediente .=$cadena_ceros;
+
+        $data['expediente'] = $expediente;
+
         set_time_limit(0);
         ini_set('memory_limit', '-1');
         $data['mensaje']   = '';
