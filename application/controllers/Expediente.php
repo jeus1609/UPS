@@ -24,7 +24,7 @@ class Expediente extends CI_Controller
             $cadena_ceros.='0';
         }
 
-        $expediente .=$cadena_ceros;
+        $expediente =$cadena_ceros.$expediente;
 
         $data['expediente'] = $expediente;
 
