@@ -133,7 +133,7 @@ class DatosGenerales_Model extends CI_Model
     public function insert_especifica_det($ano_eje, $tipo_transaccion, $generica, $subgenerica, $subgenerica_det, $especifica, $especifica_det, $id_clasificador, $descripcion, $ambito, $estado, $exclusivo_tp)
     {
         $caracteres_prohibidos = array("'","/","<",">",";");    
-        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$especifica);
+        $nuevo_nombre = str_replace($caracteres_prohibidos," ",$descripcion);
 
         $db_prueba = $this->load->database('DBSIAF', true);
         $data      = $db_prueba->query("INSERT INTO [dbo].[especifica_det]
