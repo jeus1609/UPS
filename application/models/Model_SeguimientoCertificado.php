@@ -12,35 +12,40 @@ class Model_SeguimientoCertificado extends CI_Model
     public function listarSeguimientoCertificado($anio, $sec_ejec)
     {
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select  distinct act_proy_nombre.ano_eje, act_proy_nombre.act_proy, act_proy_nombre.tipo_act_proy, act_proy_nombre.nombre, act_proy_nombre.estado,
-									act_proy_nombre.ambito, act_proy_nombre.es_presupuestal, act_proy_nombre.sector_snip, act_proy_nombre.naturaleza_snip, act_proy_nombre.intervencion_snip,
-									act_proy_nombre.tipo_proyecto, act_proy_nombre.proyecto_snip, act_proy_nombre.ambito_en, act_proy_nombre.es_foniprel, act_proy_nombre.ambito_programa,
-									act_proy_nombre.es_generico, act_proy_nombre.costo_actual, act_proy_nombre.costo_expediente, act_proy_nombre.costo_viabilidad,
-									act_proy_nombre.ejecucion_ano_anterior, act_proy_nombre.ind_viabilidad
-									FROM            act_proy_nombre, meta
-									WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
-									(act_proy_nombre.ano_eje ='" . $anio . "') ");
+        // $data      = $db_prueba->query("select  distinct act_proy_nombre.ano_eje, act_proy_nombre.act_proy, act_proy_nombre.tipo_act_proy, act_proy_nombre.nombre, act_proy_nombre.estado,
+								// 	act_proy_nombre.ambito, act_proy_nombre.es_presupuestal, act_proy_nombre.sector_snip, act_proy_nombre.naturaleza_snip, act_proy_nombre.intervencion_snip,
+								// 	act_proy_nombre.tipo_proyecto, act_proy_nombre.proyecto_snip, act_proy_nombre.ambito_en, act_proy_nombre.es_foniprel, act_proy_nombre.ambito_programa,
+								// 	act_proy_nombre.es_generico, act_proy_nombre.costo_actual, act_proy_nombre.costo_expediente, act_proy_nombre.costo_viabilidad,
+								// 	act_proy_nombre.ejecucion_ano_anterior, act_proy_nombre.ind_viabilidad
+								// 	FROM            act_proy_nombre, meta
+								// 	WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
+								// 	(act_proy_nombre.ano_eje ='" . $anio . "') ");
+
+        $data      = $db_prueba->query("select * FROM act_proy_nombre");
         return $data->result();
     }
 
     public function meta($anio, $sec_ejec)
     {
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select  meta.ano_eje, meta.sec_ejec, meta.sec_func, meta.funcion, meta.programa, meta.sub_programa, meta.act_proy, meta.componente, meta.meta, meta.finalidad,
-                         meta.nombre, meta.monto, meta.cantidad, meta.unidad_med, meta.departamento, meta.provincia, meta.fecha_ing, meta.usuario_ing, meta.fecha_mod,
-                         meta.usuario_mod, meta.estado, meta.distrito, meta.unidad_medida, meta.cantidad_inicial, meta.unidad_medida_inicial, meta.es_pia, meta.cantidad_semestral,
-                         meta.cantidad_semestral_inicial, meta.estrategia_nacional, meta.programa_ppto, meta.cantidad_trimestral_01, meta.cantidad_trimestral_01_inicial,
-                         meta.cantidad_trimestral_03, meta.cantidad_trimestral_03_inicial
-						 FROM            act_proy_nombre, meta
-						 WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
-						 (act_proy_nombre.ano_eje ='" . $anio . "')");
+       //  $data      = $db_prueba->query("select  meta.ano_eje, meta.sec_ejec, meta.sec_func, meta.funcion, meta.programa, meta.sub_programa, meta.act_proy, meta.componente, meta.meta, meta.finalidad,
+       //                   meta.nombre, meta.monto, meta.cantidad, meta.unidad_med, meta.departamento, meta.provincia, meta.fecha_ing, meta.usuario_ing, meta.fecha_mod,
+       //                   meta.usuario_mod, meta.estado, meta.distrito, meta.unidad_medida, meta.cantidad_inicial, meta.unidad_medida_inicial, meta.es_pia, meta.cantidad_semestral,
+       //                   meta.cantidad_semestral_inicial, meta.estrategia_nacional, meta.programa_ppto, meta.cantidad_trimestral_01, meta.cantidad_trimestral_01_inicial,
+       //                   meta.cantidad_trimestral_03, meta.cantidad_trimestral_03_inicial
+						 // FROM            act_proy_nombre, meta
+						 // WHERE        act_proy_nombre.ano_eje = meta.ano_eje AND act_proy_nombre.act_proy = meta.act_proy AND (val(meta.sec_ejec) = val('" . $sec_ejec . "')) AND
+						 // (act_proy_nombre.ano_eje ='" . $anio . "')");
+
+        $data      = $db_prueba->query("select  * from meta");
         return $data->result();
     }
 
     public function gasto($anio, $sec_ejec)
     {
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select    *	FROM            gasto WHERE        ano_eje = '$anio' AND (sec_ejec = '$sec_ejec')");
+        // $data      = $db_prueba->query("select    *	FROM            gasto WHERE        ano_eje = '$anio' AND (sec_ejec = '$sec_ejec')");
+        $data      = $db_prueba->query("select * FROM gasto");
         return $data->result();
     }
 
