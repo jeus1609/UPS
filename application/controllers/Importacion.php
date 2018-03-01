@@ -293,13 +293,13 @@ class Importacion extends CI_Controller
         $data['mensaje']    = 'Hubo un problema en la base de datos confirme las tablas por favor'+$anio;
         $data['actualizo']  = false;
 
-        if (is_numeric($anio)) {
+        // if (is_numeric($anio)) {
 
-            if (count($this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec)) > 0) {
+            // if (count($this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec)) > 0) {
 
                 try {
 
-                    $this->db->trans_start();
+                    // $this->db->trans_start();
                     $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $unidad_ejec); //gasto
 
                     $dataSeguimientoCertificado = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec); //act_proy_nombre
@@ -415,7 +415,7 @@ class Importacion extends CI_Controller
                         $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
                     }
                     
-                    $this->db->trans_complete();
+                    // $this->db->trans_complete();
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
                     $data['actualizo'] = true;
 
@@ -423,12 +423,12 @@ class Importacion extends CI_Controller
                     $this->db->trans_rollback();
                     $data['mensaje'] = 'Proyectos no actualizados, ocurrio un error durante la actualizacion';
                 }
-            } else {
-                $data['mensaje'] = 'No existe proyectos para actualizar con Anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . '';
-            }
-        } else {
-            $data['mensaje'] = 'Ingrese Anio Valido';
-        }
+            // } else {
+            //     $data['mensaje'] = 'No existe proyectos para actualizar con Anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . '';
+            // }
+        // } else {
+        //     $data['mensaje'] = 'Ingrese Anio Valido';
+        // }
 
         echo json_encode($data, JSON_FORCE_OBJECT);
     }
