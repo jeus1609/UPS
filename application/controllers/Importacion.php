@@ -302,6 +302,7 @@ class Importacion extends CI_Controller
                     // $this->db->trans_start();
                     $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $unidad_ejec); //gasto
 
+                    $data['num_act_proy'] = 0;
                     $dataSeguimientoCertificado = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec); //act_proy_nombre
                     foreach ($dataSeguimientoCertificado as $itemp) {
 
@@ -327,7 +328,10 @@ class Importacion extends CI_Controller
                         $ejecucion_ano_anterior = $itemp->ejecucion_ano_anterior;
                         $ind_viabilidad         = $itemp->ind_viabilidad;
                         $this->Model_SeguimientoCertificado->insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
+                        $data['num_act_proy'] ++;
                     }
+
+                    $data['num_meta'] = 0;
                     $meta = $this->Model_SeguimientoCertificado->meta($anio, $unidad_ejec);
                     foreach ($meta as $itemp) {
                         $ano_eje                        = $itemp->ano_eje;
@@ -368,8 +372,10 @@ class Importacion extends CI_Controller
                             $provincia, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $estado, $distrito, $unidad_medida, $cantidad_inicial, $unidad_medida_inicial, $es_pia, $cantidad_semestral,
                             $cantidad_semestral_inicial, $estrategia_nacional, $programa_ppto, $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03,
                             $cantidad_trimestral_03_inicial);
+                        $data['num_meta'] ++;
                     }
 
+                    $data['num_gasto'] = 0;
                     $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $unidad_ejec);
                     foreach ($gasto as $itemp) {
                         $ano_eje                  = $itemp->ano_eje;
@@ -413,6 +419,7 @@ class Importacion extends CI_Controller
                         $monto_precertificado     = $itemp->monto_precertificado;
 
                         $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
+                        $data['num_gasto'] ++;
                     }
                     
                     // $this->db->trans_complete();
