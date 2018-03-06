@@ -30,6 +30,22 @@ class Model_SeguimientoCertificado extends CI_Model
         return $data->result();
     }
 
+    public function gasto_acumulado($anio)
+    {
+        $db_prueba = $this->load->database('SIAF', true);
+        $data      = $db_prueba->query("select * FROM    gasto_acumulado
+                WHERE  ano_eje = '".$anio."' ");
+
+        return $data->result();
+    }
+
+    public function ejecucion_mpp($anio)
+    {
+        $db_prueba = $this->load->database('SIAF', true);
+        $data      = $db_prueba->query("select * FROM ejecucion_mpp WHERE ano_eje = '".$anio."' ");
+        return $data->result();
+    }
+
     //--------------DBSIAF-----------------------------------------------------------------------------------------------------------------------------
     public function insert_act_proy_nombre($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad)
     {
@@ -72,6 +88,102 @@ class Model_SeguimientoCertificado extends CI_Model
         return true;
     }
 
+    public function insert_gasto_acumulado($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto,
+        $modalidad_gasto, $elemento_gasto, $mes, $trimestre, $programacion, $calendario, $ejecucion,
+        $monto_a_aprobado, $monto_a_solicitado, $monto_a_interno, $monto_de_aprobado,
+        $monto_de_solicitado, $monto_de_interno, $archivo, $calendario_ampliacion,
+        $calendario_actualizacion, $calendario_ampliacion_dst, $calendario_flexible, $id_clasificador,
+        $pptm, $compromiso, $devengado, $girado, $pagado) {
+
+        $db_prueba = $this->load->database('DBSIAF', true);
+        $data      = $db_prueba->query("INSERT into gasto_acumulado (ano_eje, sec_ejec, origen, fuente_financ, tipo_recurso,sec_func, categ_gasto, grupo_gasto,
+                          modalidad_gasto, elemento_gasto, mes, trimestre, programacion, calendario, ejecucion,
+                                      monto_a_aprobado, monto_a_solicitado, monto_a_interno, monto_de_aprobado,
+                                      monto_de_solicitado, monto_de_interno, archivo, calendario_ampliacion,
+                                      calendario_actualizacion, calendario_ampliacion_dst, calendario_flexible, id_clasificador,
+                                      pptm, compromiso, devengado, girado, pagado)  values ('$ano_eje', '$sec_ejec', '$origen', '$fuente_financ', '$tipo_recurso','$sec_func', '$categ_gasto', '$grupo_gasto',
+                          '$modalidad_gasto', '$elemento_gasto', '$mes', '$trimestre', $programacion, $calendario, $ejecucion,
+                                      $monto_a_aprobado, $monto_a_solicitado, $monto_a_interno, $monto_de_aprobado,
+                                      $monto_de_solicitado, $monto_de_interno, '$archivo', $calendario_ampliacion,
+                                      $calendario_actualizacion, $calendario_ampliacion_dst, $calendario_flexible, '$id_clasificador',$pptm, $compromiso, $devengado, $girado, $pagado) ");
+        return true;
+    }
+
+    public function insert_ejecucion_mpp($ano_eje
+        , $sec_ejec
+        , $mes_eje
+        , $ciclo
+        , $origen
+        , $fuente_financ
+        , $tipo_recurso
+        , $clasificador
+        , $sec_func
+        , $ejecucion
+        , $anulacion
+        , $estado
+        , $estado_envio
+        , $cod_error
+        , $cod_mensa
+        , $id_clasificador
+        , $compromiso
+        , $devengado
+        , $girado
+        , $pagado
+        , $comprometido_anual
+        , $certificado) {
+
+        $db_prueba = $this->load->database('DBSIAF', true);
+        $data      = $db_prueba->query("INSERT INTO ejecucion_mpp
+           ([ano_eje]
+           ,[sec_ejec]
+           ,[mes_eje]
+           ,[ciclo]
+           ,[origen]
+           ,[fuente_financ]
+           ,[tipo_recurso]
+           ,[clasificador]
+           ,[sec_func]
+           ,[ejecucion]
+           ,[anulacion]
+           ,[estado]
+           ,[estado_envio]
+           ,[cod_error]
+           ,[cod_mensa]
+           ,[id_clasificador]
+           ,[compromiso]
+           ,[devengado]
+           ,[girado]
+           ,[pagado]
+           ,[comprometido_anual]
+           ,[certificado])
+     VALUES
+           ('$ano_eje'
+           ,'$sec_ejec'
+           ,'$mes_eje'
+           ,'$ciclo'
+           ,'$origen'
+           ,'$fuente_financ'
+           ,'$tipo_recurso'
+           ,'$clasificador'
+           ,'$sec_func'
+           ,'$ejecucion'
+           ,'$anulacion'
+           ,'$estado'
+           ,'$estado_envio'
+           ,'$cod_error'
+           ,'$cod_mensa'
+           ,'$id_clasificador'
+           ,'$compromiso'
+           ,'$devengado'
+           ,'$girado'
+           ,'$pagado'
+           ,'$comprometido_anual'
+           ,'$certificado' )");
+        return true;
+    }
+
+
+
     public function EliminarDataSIAFLocalSeguimientoAnio($anio, $sec_ejec) //Delet
     {
         $db_prueba = $this->load->database('DBSIAF', true);
@@ -79,8 +191,11 @@ class Model_SeguimientoCertificado extends CI_Model
                 DECLARE @anio varchar(50)='$anio'
                 BEGIN TRAN T1
                     DELETE gasto where ano_eje = @anio
-                    DELETE meta WHERE ano_eje = @anio                    
-                    DELETE act_proy_nombre WHERE ano_eje = @anio
+                    DELETE gasto_acumulado where ano_eje = @anio
+                    DELETE ejecucion_mpp where ano_eje = @anio
+                    
+                    --DELETE meta WHERE ano_eje = @anio                    
+                    --DELETE act_proy_nombre WHERE ano_eje = @anio
                 COMMIT TRAN T1");
         return true;
     }
