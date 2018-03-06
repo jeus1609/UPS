@@ -302,6 +302,7 @@ class Importacion extends CI_Controller
                     // $this->db->trans_start();
                     $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $unidad_ejec); 
 
+                    $data['gasto_acumulado'] = 0;
                     $gasto_acumulado_DATA      = $this->Model_SeguimientoCertificado->gasto_acumulado($anio);
                     foreach ($gasto_acumulado_DATA as $itemp) {
                         $ano_eje                   = $itemp->ano_eje;
@@ -344,10 +345,10 @@ class Importacion extends CI_Controller
                             $monto_de_solicitado, $monto_de_interno, $archivo, $calendario_ampliacion,
                             $calendario_actualizacion, $calendario_ampliacion_dst, $calendario_flexible, $id_clasificador,
                             $pptm, $compromiso, $devengado, $girado, $pagado);
-
+                        $data['gasto_acumulado']++;
                     }
 
-
+                    $data['ejecucion_mpp'] = 0;
                     $ejecucion_mpp_DATA        = $this->Model_SeguimientoCertificado->ejecucion_mpp($anio);
                     foreach ($ejecucion_mpp_DATA as $itemp) {
 
@@ -376,10 +377,10 @@ class Importacion extends CI_Controller
 
                         $this->Model_Consulta->insert_ejecucion_mpp(
                             $ano_eje, $sec_ejec, $mes_eje, $ciclo, $origen, $fuente_financ, $tipo_recurso, $clasificador, $sec_func, $ejecucion, $anulacion, $estado, $estado_envio, $cod_error, $cod_mensa, $id_clasificador, $compromiso, $devengado, $girado, $pagado, $comprometido_anual, $certificado);
-
+                        $data['ejecucion_mpp']++;
                     }
 
-                    $data['num_gasto'] = 0;
+                    $data['gasto'] = 0;
                     $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $unidad_ejec);
                     foreach ($gasto as $itemp) {
                         $ano_eje                  = $itemp->ano_eje;
@@ -423,7 +424,7 @@ class Importacion extends CI_Controller
                         $monto_precertificado     = $itemp->monto_precertificado;
 
                         $this->Model_SeguimientoCertificado->insert_Gasto($ano_eje, $sec_ejec, $origen, $fuente_financ, $tipo_recurso, $sec_func, $categ_gasto, $grupo_gasto, $modalidad_gasto, $elemento_gasto, $presupuesto, $m01, $m02, $m03, $m04, $m05, $m06, $m07, $m08, $m09, $m10, $m11, $m12, $modificacion, $ejecucion, $monto_a_solicitado, $monto_de_solicitado, $ampliacion, $credito, $id_clasificador, $monto_financ1, $monto_financ2, $compromiso, $devengado, $girado, $pagado, $monto_certificado, $monto_comprometido_anual, $monto_precertificado);
-                        $data['num_gasto'] ++;
+                        $data['gasto'] ++;
                     }
                     
                     // $this->db->trans_complete();
