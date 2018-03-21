@@ -55,6 +55,9 @@ COMENTANDO
 */
 $config['uri_protocol']	= 'REQUEST_URI';
 
+$config['odbc_active_record'] = 'SIAF';
+$config['active_record'] = 'DBSIAF';
+
 /*
 |--------------------------------------------------------------------------
 | URL suffix

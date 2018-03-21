@@ -299,11 +299,88 @@ class Importacion extends CI_Controller
 
                 try {
 
-                    // $this->db->trans_start();
+                    $this->db->trans_start();
                     $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $unidad_ejec); 
+
+                    $data['act_proy'] = 0;
+                    $act_proy_nombre_DATA = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec);
+                    foreach ($act_proy_nombre_DATA as $itemp) {
+                        $ano_eje                = $itemp->ano_eje;
+
+                        //$val = str_replace("'", "", $val);
+           //$val = preg_replace('/[^ ÂÊÎÔÛâêîôûÁÉÍÓÚáéíóúA-Za-z0-9\'\"”`˜~_.,()\/¿?¡!%#\\-$]/', ' ', $val);
+
+                        $act_proy               =  $itemp->act_proy ;
+                        $tipo_act_proy          = $itemp->tipo_act_proy;
+                        $nombre                 = str_replace("'","", $itemp->nombre) ; 
+                        $estado                 = $itemp->estado;
+                        $ambito                 = $itemp->ambito;
+                        $es_presupuestal        = $itemp->es_presupuestal;
+                        $sector_snip            = $itemp->sector_snip;
+                        $naturaleza_snip        = $itemp->naturaleza_snip;
+                        $intervencion_snip      = $itemp->intervencion_snip;
+                        $tipo_proyecto          = $itemp->tipo_proyecto;
+                        $proyecto_snip          = $itemp->proyecto_snip;
+                        $ambito_en              = $itemp->ambito_en;
+                        $es_foniprel            = $itemp->es_foniprel;
+                        $ambito_programa        = $itemp->ambito_programa;
+                        $es_generico            = $itemp->es_generico;
+                        $costo_actual           = $itemp->costo_actual;
+                        $costo_expediente       = $itemp->costo_expediente;
+                        $costo_viabilidad       = $itemp->costo_viabilidad;
+                        $ejecucion_ano_anterior = $itemp->ejecucion_ano_anterior;
+                        $ind_viabilidad         = $itemp->ind_viabilidad;
+                        $this->Model_Consulta->insert_act_proy($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
+                        $data['act_proy'] ++;
+                    }
+
+                    $data['meta'] = 0;
+                    $meta_DATA  = $this->Model_SeguimientoCertificado->meta($anio, $unidad_ejec);
+                    foreach ($meta_DATA as $itemp) {
+                        $ano_eje                        = $itemp->ano_eje;
+                        $sec_ejec                       = $itemp->sec_ejec;
+                        $sec_func                       = $itemp->sec_func;
+                        $funcion                        = $itemp->funcion;
+                        $programa                       = $itemp->programa;
+                        $sub_programa                   = $itemp->sub_programa;
+                        $act_proy                       = $itemp->act_proy;
+                        $componente                     = $itemp->componente;
+                        $meta                           = $itemp->meta;
+                        $finalidad                      = $itemp->finalidad;
+                        $nombre                         = $itemp->nombre;
+                        $monto                          = $itemp->monto;
+                        $cantidad                       = $itemp->cantidad;
+                        $unidad_med                     = $itemp->unidad_med;
+                        $departamento                   = $itemp->departamento;
+                        $provincia                      = $itemp->provincia;
+                        $fecha_ing                      = $itemp->fecha_ing;
+                        $usuario_ing                    = $itemp->usuario_ing;
+                        $fecha_mod                      = $itemp->fecha_mod;
+                        $usuario_mod                    = $itemp->usuario_mod;
+                        $estado                         = $itemp->estado;
+                        $distrito                       = $itemp->distrito;
+                        $unidad_medida                  = $itemp->unidad_medida;
+                        $cantidad_inicial               = $itemp->cantidad_inicial;
+                        $unidad_medida_inicial          = $itemp->unidad_medida_inicial;
+                        $es_pia                         = $itemp->es_pia;
+                        $cantidad_semestral             = $itemp->cantidad_semestral;
+                        $cantidad_semestral_inicial     = $itemp->cantidad_semestral_inicial;
+                        $estrategia_nacional            = $itemp->estrategia_nacional;
+                        $programa_ppto                  = $itemp->programa_ppto;
+                        $cantidad_trimestral_01         = $itemp->cantidad_trimestral_01;
+                        $cantidad_trimestral_01_inicial = $itemp->cantidad_trimestral_01_inicial;
+                        $cantidad_trimestral_03         = $itemp->cantidad_trimestral_03;
+                        $cantidad_trimestral_03_inicial = $itemp->cantidad_trimestral_03_inicial;
+                        $this->Model_Consulta->insert_Meta($ano_eje, $sec_ejec, $sec_func, $funcion, $programa, $sub_programa, $act_proy, $componente, $meta, $finalidad, $nombre, $monto, $cantidad, $unidad_med, $departamento,
+                            $provincia, $fecha_ing, $usuario_ing, $fecha_mod, $usuario_mod, $estado, $distrito, $unidad_medida, $cantidad_inicial, $unidad_medida_inicial, $es_pia, $cantidad_semestral,
+                            $cantidad_semestral_inicial, $estrategia_nacional, $programa_ppto, $cantidad_trimestral_01, $cantidad_trimestral_01_inicial, $cantidad_trimestral_03,
+                            $cantidad_trimestral_03_inicial);
+                        $data['meta'] ++;
+                    }
 
                     $data['gasto_acumulado'] = 0;
                     $gasto_acumulado_DATA      = $this->Model_SeguimientoCertificado->gasto_acumulado($anio);
+                    $totalGastoAcumulado=count($gasto_acumulado_DATA);
                     foreach ($gasto_acumulado_DATA as $itemp) {
                         $ano_eje                   = $itemp->ano_eje;
                         $sec_ejec                  = $itemp->sec_ejec;
@@ -381,8 +458,9 @@ class Importacion extends CI_Controller
                     }
 
                     $data['gasto'] = 0;
-                    $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $unidad_ejec);
-                    foreach ($gasto as $itemp) {
+                    $gasto = $this->Model_SeguimientoCertificado->gasto($anio, $unidad_ejec);;
+                    foreach ($gasto as $itemp) 
+                    {
                         $ano_eje                  = $itemp->ano_eje;
                         $sec_ejec                 = $itemp->sec_ejec;
                         $origen                   = $itemp->origen;
@@ -427,9 +505,16 @@ class Importacion extends CI_Controller
                         $data['gasto'] ++;
                     }
                     
-                    // $this->db->trans_complete();
+                    $this->db->trans_complete();
+
+                    //$data['cantidad']   = count($meta_DATA);
+
+                    //$data['mensaje']   = $this->config->item('active_record');
+                    
                     $data['mensaje']   = 'Informacion de Proyectos al anio ' . $anio . ' y Unidad ejecutora ' . $unidad_ejec . ' fueron actualizados correctamente';
+                    
                     $data['actualizo'] = true;
+
 
                 } catch (Exception $e) {
                     $this->db->trans_rollback();

@@ -25,6 +25,94 @@ $db['SIAF'] = array(
 	'save_queries' => TRUE
 );
 
+$db['SIAF_ANDAHUAYLAS'] = array(
+	'dsn'	=> 'DBVFP_ANDAHUAYLAS',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['SIAF_CHINCHEROS'] = array(
+	'dsn'	=> 'DBVFP_Chincheros',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['SIAF_COTABAMBAS'] = array(
+	'dsn'	=> 'DBVFP_COTABAMBAS',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['SIAF'] = array(
+	'dsn'	=> 'DBVFP',
+	'hostname' => '',
+	'username' => '',
+	'password' => '',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
 // $db['DBSIAF'] = array(
 //     'dsn'          => '',
 //     'hostname'     => '192.168.1.100', //
@@ -50,6 +138,75 @@ $db['SIAF'] = array(
 $db['DBSIAF'] = array(
 	'dsn'	=> '',
 	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=(local);Database=DBSIAF",
+	'username' => 'smp',
+	'password' => 'Semo123',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+$db['DBSIAF_ANDA'] = array(
+	'dsn'	=> '',
+	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=(local);Database=DBSIAF_ANDA",
+	'username' => 'smp',
+	'password' => 'Semo123',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+$db['DBSIAF_CHINC'] = array(
+	'dsn'	=> '',
+	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=(local);Database=DBSIAF_CHINC",
+	'username' => 'smp',
+	'password' => 'Semo123',
+	'database' => '',
+	'dbdriver' => 'odbc',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+
+$db['DBSIAF_COTAB'] = array(
+	'dsn'	=> '',
+	'hostname' => "Driver={ODBC Driver 13 for SQL Server};Server=(local);Database=DBSIAF_COTAB",
 	'username' => 'smp',
 	'password' => 'Semo123',
 	'database' => '',

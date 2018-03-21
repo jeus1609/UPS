@@ -12,12 +12,13 @@ class Model_SeguimientoCertificado extends CI_Model
     public function listarSeguimientoCertificado($anio, $sec_ejec)
     {
         $db_prueba = $this->load->database('SIAF', true);
-        $data      = $db_prueba->query("select * FROM act_proy_nombre where ano_eje = '".$anio."' ");
+        $data      = $db_prueba->query("select * FROM act_proy_nombre where ano_eje = '".$anio."'");
         return $data->result();
     }
 
     public function meta($anio, $sec_ejec)
     {
+
         $db_prueba = $this->load->database('SIAF', true);
         $data      = $db_prueba->query("select  * from meta where ano_eje = '".$anio."' ");
         return $data->result();
@@ -194,8 +195,8 @@ class Model_SeguimientoCertificado extends CI_Model
                     DELETE gasto_acumulado where ano_eje = @anio
                     DELETE ejecucion_mpp where ano_eje = @anio
                     
-                    --DELETE meta WHERE ano_eje = @anio                    
-                    --DELETE act_proy_nombre WHERE ano_eje = @anio
+                    DELETE meta WHERE ano_eje = @anio                    
+                    DELETE act_proy_nombre WHERE ano_eje = @anio
                 COMMIT TRAN T1");
         return true;
     }
