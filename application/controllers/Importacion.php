@@ -302,37 +302,37 @@ class Importacion extends CI_Controller
                     $this->db->trans_start();
                     $this->Model_SeguimientoCertificado->EliminarDataSIAFLocalSeguimientoAnio($anio, $unidad_ejec); 
 
-                    $data['act_proy'] = 0;
-                    $act_proy_nombre_DATA = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec);
-                    foreach ($act_proy_nombre_DATA as $itemp) {
-                        $ano_eje                = $itemp->ano_eje;
+           //          $data['act_proy'] = 0;
+           //          $act_proy_nombre_DATA = $this->Model_SeguimientoCertificado->listarSeguimientoCertificado($anio, $unidad_ejec);
+           //          foreach ($act_proy_nombre_DATA as $itemp) {
+           //              $ano_eje                = $itemp->ano_eje;
 
-                        //$val = str_replace("'", "", $val);
-           //$val = preg_replace('/[^ ÂÊÎÔÛâêîôûÁÉÍÓÚáéíóúA-Za-z0-9\'\"”`˜~_.,()\/¿?¡!%#\\-$]/', ' ', $val);
+           //              //$val = str_replace("'", "", $val);
+           // //$val = preg_replace('/[^ ÂÊÎÔÛâêîôûÁÉÍÓÚáéíóúA-Za-z0-9\'\"”`˜~_.,()\/¿?¡!%#\\-$]/', ' ', $val);
 
-                        $act_proy               =  $itemp->act_proy ;
-                        $tipo_act_proy          = $itemp->tipo_act_proy;
-                        $nombre                 = str_replace("'","", $itemp->nombre) ; 
-                        $estado                 = $itemp->estado;
-                        $ambito                 = $itemp->ambito;
-                        $es_presupuestal        = $itemp->es_presupuestal;
-                        $sector_snip            = $itemp->sector_snip;
-                        $naturaleza_snip        = $itemp->naturaleza_snip;
-                        $intervencion_snip      = $itemp->intervencion_snip;
-                        $tipo_proyecto          = $itemp->tipo_proyecto;
-                        $proyecto_snip          = $itemp->proyecto_snip;
-                        $ambito_en              = $itemp->ambito_en;
-                        $es_foniprel            = $itemp->es_foniprel;
-                        $ambito_programa        = $itemp->ambito_programa;
-                        $es_generico            = $itemp->es_generico;
-                        $costo_actual           = $itemp->costo_actual;
-                        $costo_expediente       = $itemp->costo_expediente;
-                        $costo_viabilidad       = $itemp->costo_viabilidad;
-                        $ejecucion_ano_anterior = $itemp->ejecucion_ano_anterior;
-                        $ind_viabilidad         = $itemp->ind_viabilidad;
-                        $this->Model_Consulta->insert_act_proy($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
-                        $data['act_proy'] ++;
-                    }
+           //              $act_proy               =  $itemp->act_proy ;
+           //              $tipo_act_proy          = $itemp->tipo_act_proy;
+           //  s            $nombre                 = str_replace("'","", $itemp->nombre) ; 
+           //              $estado                 = $itemp->estado;
+           //              $ambito                 = $itemp->ambito;
+           //              $es_presupuestal        = $itemp->es_presupuestal;
+           //              $sector_snip            = $itemp->sector_snip;
+           //              $naturaleza_snip        = $itemp->naturaleza_snip;
+           //              $intervencion_snip      = $itemp->intervencion_snip;
+           //              $tipo_proyecto          = $itemp->tipo_proyecto;
+           //              $proyecto_snip          = $itemp->proyecto_snip;
+           //              $ambito_en              = $itemp->ambito_en;
+           //              $es_foniprel            = $itemp->es_foniprel;
+           //              $ambito_programa        = $itemp->ambito_programa;
+           //              $es_generico            = $itemp->es_generico;
+           //              $costo_actual           = $itemp->costo_actual;
+           //              $costo_expediente       = $itemp->costo_expediente;
+           //              $costo_viabilidad       = $itemp->costo_viabilidad;
+           //              $ejecucion_ano_anterior = $itemp->ejecucion_ano_anterior;
+           //              $ind_viabilidad         = $itemp->ind_viabilidad;
+           //              $this->Model_Consulta->insert_act_proy($ano_eje, $act_proy, $tipo_act_proy, $nombre, $estado, $ambito, $es_presupuestal, $sector_snip, $naturaleza_snip, $intervencion_snip, $tipo_proyecto, $proyecto_snip, $ambito_en, $es_foniprel, $ambito_programa, $es_generico, $costo_actual, $costo_expediente, $costo_viabilidad, $ejecucion_ano_anterior, $ind_viabilidad);
+           //              $data['act_proy'] ++;
+           //          }
 
                     $data['meta'] = 0;
                     $meta_DATA  = $this->Model_SeguimientoCertificado->meta($anio, $unidad_ejec);

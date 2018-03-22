@@ -196,7 +196,7 @@ class Model_SeguimientoCertificado extends CI_Model
                     DELETE ejecucion_mpp where ano_eje = @anio
                     
                     DELETE meta WHERE ano_eje = @anio                    
-                    DELETE act_proy_nombre WHERE ano_eje = @anio
+                    --DELETE act_proy_nombre WHERE ano_eje = @anio
                 COMMIT TRAN T1");
         return true;
     }
